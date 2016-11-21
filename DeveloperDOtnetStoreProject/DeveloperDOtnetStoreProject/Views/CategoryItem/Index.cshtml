@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.ProductAddOns.TechnicalReview.CategoryItemModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index of CategoryItems</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HeaderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(ModelItem => item.HeaderName)
+            </td>
+            <td>
+                @Html.DisplayFor(ModelItem => item.ItemName)
+            </td>
+        </tr>
+    }
+</table>
