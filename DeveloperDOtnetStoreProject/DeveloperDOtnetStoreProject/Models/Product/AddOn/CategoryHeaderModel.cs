@@ -1,4 +1,4 @@
-﻿using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalReview;
+﻿using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails;
 using System;
 using System.Collections.Generic;
 using System.Linq;

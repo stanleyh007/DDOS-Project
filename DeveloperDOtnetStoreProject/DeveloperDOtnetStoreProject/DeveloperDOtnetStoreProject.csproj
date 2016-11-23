@@ -198,19 +198,23 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\Product\AddOn\TechnicalDetails\CategoryItemController.cs" />
+    <Compile Include="Controllers\Product\ProductController.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Product\ProductModel.cs" />
+    <Compile Include="Models\Product\AddOn\TechnicalDetails\CategoryItemModel.cs" />
+    <Compile Include="Models\Product\AddOn\TechnicalDetails\CategoryModel.cs" />
     <Compile Include="Models\Product\AddOn\CategoryHeaderModel.cs" />
     <Compile Include="Models\Product\AddOn\CostumerReviewModel.cs" />
     <Compile Include="Models\Product\AddOn\RatingModel.cs" />
-    <Compile Include="Models\Product\AddOn\TechnicalReview\CategoryItemModel.cs" />
-    <Compile Include="Models\Product\AddOn\TechnicalReview\CategoryModel.cs" />
+    <Compile Include="Models\Product\ProductModel.cs" />
+    <Compile Include="Models\Repositories\ProductRepository.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\User\AddOn\WishListModel.cs" />
@@ -275,11 +279,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\CategoryItem\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Entity\" />
+    <Folder Include="Views\UserController2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
