@@ -1,7 +1,44 @@
-﻿
+﻿@model DeveloperDOtnetStoreProject.Models.Product.ProductModel
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        // Product Name
+        <div class="form-group">
+            @Html.LabelFor(t => t.NameHeader, new { @class = "control-label" } )
+            @Html.TextBoxFor(t => t.NameHeader, new { @class = "form-control" } )
+        </div>
+        <div class="form-group">
+            @Html.Label("Short Description", new { @class = "control-label" } )
+            @Html.TextBoxFor(t => t.NameDescription, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Price", new { @class = "control-label" })
+            @Html.TextBoxFor(t => t.Price, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Storage Count", new { @class = "control-label" })
+            @Html.TextBoxFor(t => t.QuantityStorage, new { @class = "form-control" })
+        </div>
+        /*<div class="form-group">
+            <!--<label>Firstname</label>-->
+            @Html.LabelFor(m => m.Firstname, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(a => a.Firstname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Firstname)
+            </div>
+        </div>*/
+
+        <input type="submit" value="Create" class="btn btn-primary" id="Create" />
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>

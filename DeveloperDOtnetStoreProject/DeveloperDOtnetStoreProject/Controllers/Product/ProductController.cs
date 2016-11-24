@@ -1,20 +1,29 @@
-﻿using DeveloperDOtnetStoreProject.Models;
-using DeveloperDOtnetStoreProject.Models.Product;
+﻿using DeveloperDOtnetStoreProject.Models.Product;
+using DeveloperDOtnetStoreProject.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ninject;
 
 namespace DeveloperDOtnetStoreProject.Controllers.Product
 {
     public class ProductController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        // IF ninject dosn't work here remove 
+        //using DeveloperDOtnetStoreProject.Interfaces;
+        private IProductRepository productRepository;
+         public ProductController(IProductRepository iprepo)
+         {
+             productRepository = iprepo;
+         }
+
+        [AllowAnonymous]
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            return View(productRepository.GetAll());
         }
 
         // GET: Product/Details/5
@@ -24,6 +33,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         }
 
         // GET: Product/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -31,42 +41,46 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
 
         // POST: Product/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ProductModel product)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                // product is created
+                productRepository.InsertOrUpdate(product);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            
+            return View();
         }
 
         // GET: Product/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return new HttpNotFoundResult();
+            }
+            ProductModel product = productRepository.Find(id);
+
+            if(product == null)
+            {
+                return new HttpNotFoundResult();
+            }
+            return View(product);
         }
 
         // POST: Product/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ProductModel product)
         {
-            try
-            {
+            if(ModelState.IsValid) {
+                productRepository.InsertOrUpdate(product);
                 // TODO: Add update logic here
-
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            }   
+            return View();
         }
-
+        
         // GET: Product/Delete/5
         public ActionResult Delete(int id)
         {
@@ -75,24 +89,19 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
 
         // POST: Product/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id)
         {
-            try
+            if(id == null)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return new HttpNotFoundResult();
             }
-            catch
-            {
-                return View();
-            }
+            productRepository.Delete(id);
+            return RedirectToAction("Index");
         }
 
         public ProductModel Find(int? id)
         {
-
-            return null;
+            return productRepository.Find(id);
         }
     }
 }

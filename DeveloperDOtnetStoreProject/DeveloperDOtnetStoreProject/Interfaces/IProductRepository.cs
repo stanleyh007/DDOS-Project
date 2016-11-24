@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DeveloperDOtnetStoreProject.Interfaces
 {
-    interface IProductRepository
+    public interface IProductRepository
     {
         ProductModel Find(int? id);
         List<ProductModel> GetAll();

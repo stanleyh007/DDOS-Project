@@ -1,7 +1,42 @@
-﻿
+﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.Product.ProductModel>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Product Index - CHANGE TO PROPER NAME</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameHeader)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantityStorage)
+        </th>
+        <th>
+            @Html.DisplayName("Options")
+        </th>
+    </tr>
+    @foreach (var itemData in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(dataHolder => itemData.NameHeader)</td>
+
+            <td>@Html.DisplayFor(dataHolder => itemData.Price)</td>
+
+            <td>@Html.DisplayFor(dataHolder => itemData.QuantityStorage)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = itemData.ProductModelId }) |
+                @Html.ActionLink("Details", "Details", new { id = itemData.ProductModelId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = itemData.ProductModelId })
+            </td>
+        </tr>
+    }
+</table>

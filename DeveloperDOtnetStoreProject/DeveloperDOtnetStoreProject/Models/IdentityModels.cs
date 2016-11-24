@@ -20,8 +20,6 @@ namespace DeveloperDOtnetStoreProject.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        
-
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -33,9 +31,11 @@ namespace DeveloperDOtnetStoreProject.Models
         }
         // Product
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.ProductModel> Products { get; set; }
+        // -> CategoryHeaderModel
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel> CategoryHeader { get; set; }
 
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
-        
+        // User
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.User.UserModel> UserModels { get; set; }
     }
 }

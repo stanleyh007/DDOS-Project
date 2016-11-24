@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Ninject;
+using Ninject.Web.Mvc;
 
 namespace DeveloperDOtnetStoreProject
 {
@@ -16,7 +18,6 @@ namespace DeveloperDOtnetStoreProject
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
         }
     }
 }

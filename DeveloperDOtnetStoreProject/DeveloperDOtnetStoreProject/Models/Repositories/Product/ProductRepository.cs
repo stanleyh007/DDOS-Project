@@ -5,7 +5,7 @@ using System.Web;
 using DeveloperDOtnetStoreProject.Models.Product;
 using DeveloperDOtnetStoreProject.Interfaces;
 
-namespace DeveloperDOtnetStoreProject.Models.Repositories
+namespace DeveloperDOtnetStoreProject.Models.Repositories.Product
 {
     public class ProductRepository : IProductRepository
     {
@@ -19,7 +19,8 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
         // GetAll()
         public List<ProductModel> GetAll()
         {
-            return db.Products.ToList();
+            List<ProductModel> products = db.Products.ToList();
+            return products;
         }
         
         // ADD or Update
@@ -77,7 +78,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
         */
         /*
          * Troels Helbo Jensen
-         * If the ApplicationDbContext methode  can't fin your tables
+         * If the ApplicationDbContext methode  can't find your tables
          * 1: go IdentityModels.cs -> Look at line 35
          * 1.1: Add Line for new Table link between ApplicationDbContext to the databae
          */
