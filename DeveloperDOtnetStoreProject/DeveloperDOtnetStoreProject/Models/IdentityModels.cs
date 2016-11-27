@@ -30,6 +30,6 @@ namespace DeveloperDOtnetStoreProject.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.ProductAddOns.TechnicalReview.CategoryItemModel> CategoryItemModels { get; set; }
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalReview.CategoryItemModel> CategoryItemModels { get; set; }
     }
 }

@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="da">
+<head>
+    <!--Hey there! have a good day :)-->
+    <title>@ViewBag.Title - Welcome to DDOS</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navigation-header">
+        <header class="main-header" role="banner">
+            <div class="container">
+                <div class="row">
+                    <div class="pull-left logo col-xs-6 col-sm-5 col-md-4">
+                        <a href="/" tabindex="20" title="Gå til forsiden.">
+                            <img src="~/Images/logo_b2c.png"/>
+                        </a>    
+                    </div>
+                        <div class="row">
+                            <nav class="hidden-xs col-sm-12 text-right top-nav">
+                                <div class="nav navbar-fixed-top pull-right col-xs-7 col-sm-8 col-md-9">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>@Html.ActionLink("ØNSKELISTE", "Index", "Home")</li>
+                                        <li>@Html.ActionLink("KUNDESERVICE", "About", "Home")</li>
+                                        @Html.Partial("_LoginPartial")
+                                    </ul>     
+                                </div>
+                           </nav>
+                        </div>
+                    <div class="row">
+                        <nav class="hidden-xs hidden-sm col-md-4 right-nav col-md-push-8">
+                            <div class="nav navbar-right">
+                                <ul class="nav">
+                                    <li>@Html.ActionLink("Indkøbsvogn", "Index", "Home")</li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="hidden-xs hidden-sm col-sm-8 col-md-pull-4">
+                            <div class="search">
+                                <div class="col-lg-6 pull-right">
+                                    <div class="input-group" role="search" action="/" method="get">
+                                        <input type="text" class="form-control" placeholder="Søg i DDOS">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-secondary" type="submit">Go!</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
+                        <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
+                        <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>
+                        <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
+                        <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
+                        <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
