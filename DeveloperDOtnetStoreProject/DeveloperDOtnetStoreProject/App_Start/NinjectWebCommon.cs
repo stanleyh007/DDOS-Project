@@ -10,24 +10,11 @@ namespace DeveloperDOtnetStoreProject.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Interfaces;
-    using Models.Repositories;
-    using Models.Repositories.Product;
 
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
-        /*
-         * Ninject install. Do it from Tools -> 
-         *                              NuGet Package Manager -> 
-         *                                   Manage Packges For Project Solution ->
-         *                                      search for Ninject.MVC5 and install this package
-         * If you get problems with the show of the Web Part
-         * search in Nuget Microsoft webapi
-         * Installer denne pakke:
-         *      "Microsoft.AspNet.WebApi"
-         */
         /// <summary>
         /// Starts the application
         /// </summary>
@@ -74,7 +61,6 @@ namespace DeveloperDOtnetStoreProject.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IProductRepository>().To<ProductRepository>();
         }        
     }
 }
