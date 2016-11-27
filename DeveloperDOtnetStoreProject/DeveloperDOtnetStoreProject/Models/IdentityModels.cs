@@ -33,7 +33,8 @@ namespace DeveloperDOtnetStoreProject.Models
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.ProductModel> Products { get; set; }
         // AddOn -> CategoryHeaderModel
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel> CategoryHeader { get; set; }
-        // -> TechnicalDetails -> CategoryItemmodel
+        // -> TechnicalDetails 
+        //    -> CategoryItemmodel
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItem { get; set; }
 
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
