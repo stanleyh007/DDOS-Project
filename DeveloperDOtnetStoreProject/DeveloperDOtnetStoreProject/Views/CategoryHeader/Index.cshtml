@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel>
+@{
+    ViewBag.Title = "Index of Category Header";
+}
+
+<h2>Category Header Name - Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryHeaderModelId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayName("Options")
+        </th>
+    </tr>
+    @foreach (var itemData in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(dataHolder => itemData.CategoryHeaderModelId)</td>
+
+            <td>@Html.DisplayFor(dataHolder => itemData.Name)</td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = itemData.CategoryHeaderModelId }) |
+                @Html.ActionLink("Details", "Details", new { id = itemData.CategoryHeaderModelId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = itemData.CategoryHeaderModelId })
+            </td>
+        </tr>
+    }
+</table>

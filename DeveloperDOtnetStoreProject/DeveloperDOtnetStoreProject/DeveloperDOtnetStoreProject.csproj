@@ -369,6 +369,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Product\AddOn\CategoryHeaderController.cs" />
+    <Compile Include="Controllers\Product\AddOn\TechnicalDetails\CategoryItemController.cs" />
     <Compile Include="Controllers\Product\ProductController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -386,6 +387,8 @@
     <Compile Include="Models\Product\AddOn\CostumerReviewModel.cs" />
     <Compile Include="Models\Product\AddOn\RatingModel.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />
+    <Compile Include="Models\Repositories\Product\AddOn\CategoryHeaderRepository.cs" />
+    <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryItemRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
@@ -455,11 +458,12 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\AddOn\CategoryHeaderView\Index.cshtml" />
+    <Content Include="Views\CategoryHeader\Index.cshtml" />
+    <Content Include="Views\CategoryHeader\Create.cshtml" />
+    <Content Include="Views\CategoryItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Repositories\Product\AddOn\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

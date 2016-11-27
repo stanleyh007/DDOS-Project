@@ -1,31 +1,30 @@
-﻿using DeveloperDOtnetStoreProject.Models;
-using DeveloperDOtnetStoreProject.Models.Product.AddOn;
-using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn;
+﻿using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails;
+using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.TechnicalDetails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn
+namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn.TechnicalDetails
 {
     [Authorize]
-    public class CategoryHeaderController : Controller
+    public class CategoryItemController : Controller
     {
-        private CategoryHeaderRepository categoryRepo = new CategoryHeaderRepository();
+        private CategoryItemRepository repository = new CategoryItemRepository();
 
         [AllowAnonymous]
-        // GET: CategoryHeader
+        // GET: CategoryItem
         public ActionResult Index()
         {
-            return View(categoryRepo.GetAll());
+            return View(repository.GetAll());
         }
 
         // Don't even know hos to put in the game
         [AllowAnonymous]
         public ActionResult Details(int id)
         {
-            return View();
+            return View(repository.Find(id));
         }
 
         [AllowAnonymous]
@@ -37,11 +36,11 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Create(CategoryHeaderModel cHeader)
+        public ActionResult Create(CategoryItemModel cItem)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                categoryRepo.InsertOrUpdate(cHeader);
+                repository.InsertOrUpdate(cItem);
                 return RedirectToAction("Index");
             }
             return View();
