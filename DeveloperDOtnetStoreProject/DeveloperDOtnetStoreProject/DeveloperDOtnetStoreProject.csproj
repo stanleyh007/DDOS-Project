@@ -461,6 +461,7 @@
     <Content Include="Views\CategoryHeader\Index.cshtml" />
     <Content Include="Views\CategoryHeader\Create.cshtml" />
     <Content Include="Views\CategoryItem\Index.cshtml" />
+    <Content Include="Views\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
