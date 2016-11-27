@@ -29,7 +29,13 @@ namespace DeveloperDOtnetStoreProject.Models
         {
             return new ApplicationDbContext();
         }
+        // Product
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.ProductModel> Products { get; set; }
+        // -> CategoryHeaderModel
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel> CategoryHeader { get; set; }
 
-        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalReview.CategoryItemModel> CategoryItemModels { get; set; }
+        //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
+        // User
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.User.UserModel> UserModels { get; set; }
     }
 }

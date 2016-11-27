@@ -1,4 +1,4 @@
-﻿using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalReview;
+﻿using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn
     {
         public int CategoryHeaderModelId { get; set; }
         public string Name { get; set; } // name of the product
-        public ICollection<CategoryModel> Categories { get; set; }
+        // This variable is not usable
+        //public ICollection<CategoryModel> Categories { get; set; }
     }
 }
