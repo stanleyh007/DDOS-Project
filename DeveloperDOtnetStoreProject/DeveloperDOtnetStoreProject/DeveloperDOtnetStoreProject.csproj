@@ -458,7 +458,6 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\AddOn\CategoryHeaderView\Index.cshtml" />
     <Content Include="Views\Shared\_WebShopLayout.cshtml" />
     <Content Include="Views\Body\Index.cshtml" />
     <Content Include="Views\CategoryHeader\Index.cshtml" />
@@ -468,8 +467,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Repositories\Product\AddOn\" />
-    <Folder Include="Views\CategoryItem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
