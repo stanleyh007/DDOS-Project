@@ -29,7 +29,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         // GET: Product/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(productRepository.Find(id));
         }
 
         // GET: Product/Create

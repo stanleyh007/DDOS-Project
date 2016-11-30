@@ -31,8 +31,11 @@ namespace DeveloperDOtnetStoreProject.Models
         }
         // Product
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.ProductModel> Products { get; set; }
-        // -> CategoryHeaderModel
+        // AddOn -> CategoryHeaderModel
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel> CategoryHeader { get; set; }
+        // -> TechnicalDetails 
+        //    -> CategoryItemmodel
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItem { get; set; }
 
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
         // User

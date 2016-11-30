@@ -1,0 +1,17 @@
+﻿@model DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel
+@{
+    ViewBag.Title = "Create - Category Header Model";
+}
+
+<h2>Create - Category Header Model</h2>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.Label("Navn", new { @class = "control-label" } )
+            @Html.TextBoxFor(t => t.Name, new { @class = "form-label" } )
+        </div>
+        <input type="submit" value="Create" class="btn btn-primary" id="Create" />
+    }
+</div>

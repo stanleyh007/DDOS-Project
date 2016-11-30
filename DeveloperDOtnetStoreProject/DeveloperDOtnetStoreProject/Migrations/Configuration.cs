@@ -1,5 +1,9 @@
 namespace DeveloperDOtnetStoreProject.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
+    using Models.Product.AddOn;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -10,10 +14,44 @@ namespace DeveloperDOtnetStoreProject.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            ContextKey = "DeveloperDOtnetStoreProject.Models.ApplicationDbContext";
         }
 
         protected override void Seed(DeveloperDOtnetStoreProject.Models.ApplicationDbContext context)
         {
+            // Adding data to the CategoryHeaderModel table
+            context.CategoryHeader.AddOrUpdate(ch => ch.Name, new CategoryHeaderModel[] 
+            {
+                new CategoryHeaderModel
+                {
+                    Name = "Grafikkort"
+                },
+                new CategoryHeaderModel
+                {
+                    Name = "Harddisk"
+                },
+                new CategoryHeaderModel
+                {
+                    Name = "Bundkort"
+                }
+            });
+
+            var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            rm.Create(new IdentityRole("admin"));
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var client2 = new ApplicationUser { UserName = "a@b.c" };
+            var result1 = userManager.Create(client2, "P_assw0rd1");
+
+            if(result1.Succeeded == false)
+            {
+                client2 = userManager.FindByName("a@b.c");
+            }
+
+            context.SaveChanges();
+
+            userManager.AddToRole(client2.Id, "admin");
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

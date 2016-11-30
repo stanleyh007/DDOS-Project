@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index - Category Item gennemtænk design</h2>
+
+<table class="table">
+    <tr>
+        <th>Category Header Name</th>
+        <th>Item Name</th>
+        <th>isItemUsed</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(tableData => item.HeaderName)</td>
+            @if (item.isItemNameUSed)
+            {
+                @foreach(var name in item.ItemNames)
+                {
+                    
+                }
+            }
+            else
+            {
+                <td>@Html.DisplayFor(tableData => item.ItemName)</td>
+            }
+            
+        </tr>
+    }
+</table>
