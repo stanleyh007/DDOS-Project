@@ -1,4 +1,5 @@
-﻿using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails;
+﻿using DeveloperDOtnetStoreProject.Models;
+using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.TechnicalDetails;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn.TechnicalDetails
     public class CategoryItemController : Controller
     {
         private CategoryItemRepository repository = new CategoryItemRepository();
+        private CategoryRepository listRepository = new CategoryRepository();
 
         [AllowAnonymous]
         // GET: CategoryItem
@@ -29,20 +31,26 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn.TechnicalDetails
 
         [AllowAnonymous]
         [HttpGet]
+        // The ViewBag as a new SelectList is for the DropDownList
+        // The ApplicationDbContext 
         public ActionResult Create()
         {
+            ViewBag.CategoryModelId = new SelectList(listRepository.GetAll(), "CategoryModelId", "CategoryName");
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Create(CategoryItemModel cItem)
+        // The Bind is for the DropDownList, the same is for the ViewBag as a new SelectList
+        public ActionResult Create([Bind(Include = "CategoryItemModelId, HeaderName, CategoryModelId")] CategoryItemModel cItem)
         {
             if (ModelState.IsValid)
             {
                 repository.InsertOrUpdate(cItem);
                 return RedirectToAction("Index");
             }
+
+            ViewBag.CategoryModelId = new SelectList(listRepository.GetAll(), "CategoryModelId", "CategoryName");
             return View();
         }
     }

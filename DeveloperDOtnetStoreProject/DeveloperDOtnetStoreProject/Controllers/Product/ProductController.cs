@@ -6,18 +6,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
+using System.Net;
+using DeveloperDOtnetStoreProject.Models.Repositories.Product;
+using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn;
+using DeveloperDOtnetStoreProject.Models.Product.AddOn;
 
 namespace DeveloperDOtnetStoreProject.Controllers.Product
 {
     public class ProductController : Controller
     {
+        private List<CategoryHeaderModel> ListCategoryHeaderModels;
         // IF ninject dosn't work here remove 
         //using DeveloperDOtnetStoreProject.Interfaces;
         private IProductRepository productRepository;
-         public ProductController(IProductRepository iprepo)
-         {
-             productRepository = iprepo;
-         }
+        public ProductController(ProductRepository iprepo, CategoryHeaderRepository cHR)
+        {
+            ListCategoryHeaderModels = cHR.GetAll();
+            productRepository = iprepo;
+        }
 
         [AllowAnonymous]
         // GET: Product
@@ -27,15 +33,26 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         }
 
         // GET: Product/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View(productRepository.Find(id));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProductModel product = productRepository.Find(id);
+            if(product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
         }
 
         // GET: Product/Create
         [HttpGet]
         public ActionResult Create()
         {
+            // Virker ikke Endnu
+            ViewBag.CategoryModelId = new SelectList(ListCategoryHeaderModels, "CategoryModelId", "CategoryName");
             return View();
         }
 
@@ -81,14 +98,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
             return View();
         }
         
-        // GET: Product/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Product/Delete/5
-        [HttpPost]
         public ActionResult Delete(int? id)
         {
             if(id == null)

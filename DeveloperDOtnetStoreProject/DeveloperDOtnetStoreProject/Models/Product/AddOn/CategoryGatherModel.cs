@@ -8,6 +8,9 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn
 {
     public class CategoryGatherModel
     {
+        /**
+         * Er nok ubruglig!!!!
+         */ 
         public int Id { get; set; }
         public CategoryHeaderModel CategoryHeader { get; set; }
         public ICollection<CategoryModel> CategoryModels { get; set; }

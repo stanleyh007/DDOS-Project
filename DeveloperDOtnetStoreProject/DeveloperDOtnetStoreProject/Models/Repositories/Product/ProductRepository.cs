@@ -19,8 +19,8 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product
         // GetAll()
         public List<ProductModel> GetAll()
         {
-            List<ProductModel> products = db.Products.ToList();
-            return products;
+            
+            return db.Products.ToList();
         }
         
         // ADD or Update

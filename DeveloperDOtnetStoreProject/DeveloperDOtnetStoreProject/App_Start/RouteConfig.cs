@@ -18,6 +18,8 @@ namespace DeveloperDOtnetStoreProject
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Body", action = "Index", id = UrlParameter.Optional }
             );
+            // I Idea is that you can make new Routes, but don't know how
+
         }
     }
 }

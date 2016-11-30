@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DeveloperDOtnetStoreProject.Interfaces;
 
 namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
 {
-    public class CategoryHeaderRepository
+    public class CategoryHeaderRepository : IGenericProductRepository<CategoryHeaderModel>
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // Crud To the database

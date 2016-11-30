@@ -1,33 +1,44 @@
 ﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel>
-
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index - Category Item gennemtænk design</h2>
+<h2>Index - Category Item Model</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
 <table class="table">
     <tr>
-        <th>Category Header Name</th>
-        <th>Item Name</th>
-        <th>isItemUsed</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeaderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId.CategoryName)
+        </th>
     </tr>
-    @foreach(var item in Model)
+    @foreach (var itemData in Model)
     {
         <tr>
-            <td>@Html.DisplayFor(tableData => item.HeaderName)</td>
-            @if (item.isItemNameUSed)
-            {
-                @foreach(var name in item.ItemNames)
-                {
-                    
-                }
-            }
-            else
-            {
-                <td>@Html.DisplayFor(tableData => item.ItemName)</td>
-            }
+            <td>@Html.DisplayFor(dataHolder => itemData.Id)</td>
+
+            <td>@Html.DisplayFor(dataHolder => itemData.HeaderName)</td>
+
+            <td>@Html.DisplayFor(dataHolder => itemData.ItemName)</td>
             
+            <td>@Html.DisplayFor(dataHolder => itemData.CategoryId.CategoryName)</td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = itemData.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = itemData.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = itemData.Id })
+            </td>
         </tr>
     }
 </table>

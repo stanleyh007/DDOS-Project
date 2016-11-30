@@ -31,12 +31,20 @@ namespace DeveloperDOtnetStoreProject.Models
         }
         // Product
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.ProductModel> Products { get; set; }
-        // AddOn -> CategoryHeaderModel
+        // -> AddOn 
+        //    -> CategoryHeaderModel
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel> CategoryHeader { get; set; }
-        // -> TechnicalDetails 
-        //    -> CategoryItemmodel
-        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItem { get; set; }
+        //    -> CostumerReview
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CostumerReviewModel> CostumerReview { get; set; }
+        //    -> RatingModel
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.RatingModel> Rating { get; set; }
 
+        // -> TechnicalDetails 
+        //    -> CategoryItemModel
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItem { get; set; }
+        //    -> CategoryModel
+
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryModel> Category { get; set; }
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
         // User
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.User.UserModel> UserModels { get; set; }

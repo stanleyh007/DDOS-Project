@@ -4,6 +4,7 @@ namespace DeveloperDOtnetStoreProject.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Models.Product.AddOn;
+    using Models.Product.AddOn.TechnicalDetails;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,6 +15,7 @@ namespace DeveloperDOtnetStoreProject.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "DeveloperDOtnetStoreProject.Models.ApplicationDbContext";
         }
 
@@ -35,6 +37,25 @@ namespace DeveloperDOtnetStoreProject.Migrations
                     Name = "Bundkort"
                 }
             });
+
+            // Adding item to the Category Header
+            /*context.CategoryItem.AddOrUpdate(ci => ci.ItemName, new CategoryItemModel[]
+            {
+                // This is the items to fil out the Generel -> ProductType -> [items]
+                new CategoryItemModel
+                {
+                    HeaderName = "Enhedstype",
+                    ItemName = "Grafikkort",
+                    isItemNameUSed = false
+                },
+                new CategoryItemModel
+                {
+                    HeaderName = "Interfacer",
+                    ItemName = null,
+                    isItemNameUSed = true,
+                    ItemNames = {"DVI-D", "2xDisplayPort", "2xHDMI"}
+                }
+            });*/
 
             var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             rm.Create(new IdentityRole("admin"));

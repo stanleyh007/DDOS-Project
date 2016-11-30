@@ -10,6 +10,11 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.Technica
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ApplicationDbContext GetDB()
+        {
+            return db;
+        }
+
         public CategoryItemModel Find(int? id)
         {
             return db.CategoryItem.Find(id);
