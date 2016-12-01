@@ -13,7 +13,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn.TechnicalDetails
     public class CategoryItemController : Controller
     {
         private CategoryItemRepository repository = new CategoryItemRepository();
-        private CategoryRepository listRepository = new CategoryRepository();
+        private 
 
         [AllowAnonymous]
         // GET: CategoryItem

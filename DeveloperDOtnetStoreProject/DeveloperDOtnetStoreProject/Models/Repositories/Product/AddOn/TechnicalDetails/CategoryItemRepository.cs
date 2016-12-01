@@ -6,7 +6,7 @@ using System.Web;
 
 namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.TechnicalDetails
 {
-    public class CategoryItemRepository
+    public class CategoryItemRepository : IGenericProductRepository<>
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
