@@ -1,4 +1,5 @@
-﻿using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails;
+﻿using DeveloperDOtnetStoreProject.Interfaces;
+using DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.TechnicalDetails
 {
-    public class CategoryItemRepository : IGenericProductRepository<>
+    public class CategoryItemRepository : IGenericProductRepository<CategoryItemModel>
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
