@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DeveloperDOtnetStoreProject.Models.User;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DeveloperDOtnetStoreProject.Models
@@ -79,6 +80,17 @@ namespace DeveloperDOtnetStoreProject.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        //Give Role a name
+        public string Name { get; set; }
+
+        public RegisterViewModel()
+        { Rolelist = new List<System.Web.Mvc.SelectListItem>(); }
+       
+        public string Role { get; set; }
+        public IList<System.Web.Mvc.SelectListItem> Rolelist { get;  set; }
+
+        public UserModel UserModel { get; set; }
     }
 
     public class ResetPasswordViewModel

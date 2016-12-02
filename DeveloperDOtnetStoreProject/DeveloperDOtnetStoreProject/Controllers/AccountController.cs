@@ -18,6 +18,8 @@ namespace DeveloperDOtnetStoreProject.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        public ApplicationDbContext db = new ApplicationDbContext();
+
         public AccountController()
         {
         }
@@ -139,7 +141,15 @@ namespace DeveloperDOtnetStoreProject.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            //Choose Role for user
+            
+            var model = new RegisterViewModel();
+            var roles = db.Roles.ToList();
+            foreach (var r in roles)
+            {
+                model.Rolelist.Add(new SelectListItem(){Text = r.Name, Value = r.Name});
+            }
+            return View(model);
         }
 
         //
@@ -155,6 +165,9 @@ namespace DeveloperDOtnetStoreProject.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //Save role for user as part of userinformation
+                    await this.UserManager.AddToRoleAsync(user.Id, model.Role);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

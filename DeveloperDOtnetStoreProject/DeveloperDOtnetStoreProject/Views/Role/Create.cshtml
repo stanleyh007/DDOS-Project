@@ -1,0 +1,37 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{ 
+    ViewBag.Title = "Create";
+}
+
+<h2>Brugertype</h2>
+
+<style type="text/css">
+    #tbrole, .c
+    {
+        border: hidden;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    <hr />
+    <div class="form-group">
+        <table id="tbrole">
+            <tr>
+                <td class="c">Oprette brugertype: </td>
+                <td class="c">
+                    @Html.EditorFor(m => m.Name)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="form-group">
+            <input type="submit" value="Create Role" class="btn btn-primary"/>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

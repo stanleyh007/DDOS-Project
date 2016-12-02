@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using DeveloperDOtnetStoreProject.Models.User;
 
 namespace DeveloperDOtnetStoreProject.Models
 {
@@ -16,6 +17,9 @@ namespace DeveloperDOtnetStoreProject.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        // Identity User
+        public UserModel UserModel { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
