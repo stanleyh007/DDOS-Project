@@ -6,7 +6,7 @@
 
 <h2>Students</h2>
 
-@if (ViewContext.HttpContext.User.IsInRole("admin"))
+@if (ViewContext.HttpContext.User.IsInRole("Administrator"))
 {
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -57,7 +57,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            @if (ViewContext.HttpContext.User.IsInRole("admin"))
+            @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
             {
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

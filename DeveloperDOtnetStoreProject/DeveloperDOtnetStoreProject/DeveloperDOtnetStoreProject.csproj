@@ -378,6 +378,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Migrations\201612021455109_Initial.cs" />
     <Compile Include="Migrations\201612021455109_Initial.Designer.cs">
@@ -397,6 +398,7 @@
     <Compile Include="Models\Repositories\Product\AddOn\CategoryHeaderRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryItemRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
+    <Compile Include="Models\Repositories\UserRepository.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\User\AddOn\WishListModel.cs" />
