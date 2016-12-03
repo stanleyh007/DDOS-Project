@@ -44,7 +44,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -373,11 +373,17 @@
     <Compile Include="Controllers\Product\AddOn\CategoryHeaderController.cs" />
     <Compile Include="Controllers\Product\AddOn\TechnicalDetails\CategoryItemController.cs" />
     <Compile Include="Controllers\Product\ProductController.cs" />
+    <Compile Include="Controllers\User\RoleController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Migrations\201612021455109_Initial.cs" />
+    <Compile Include="Migrations\201612021455109_Initial.Designer.cs">
+      <DependentUpon>201612021455109_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -392,6 +398,7 @@
     <Compile Include="Models\Repositories\Product\AddOn\CategoryHeaderRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryItemRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
+    <Compile Include="Models\Repositories\UserRepository.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\User\AddOn\WishListModel.cs" />
@@ -481,6 +488,14 @@
     <Content Include="Views\CategoryHeader\Index.cshtml" />
     <Content Include="Views\CategoryHeader\Create.cshtml" />
     <Content Include="Views\CategoryItem\Index.cshtml" />
+    <Content Include="Views\Shared\_CreateUpdate.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\Shared\_DetailsOrDelete.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -490,6 +505,11 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612021455109_Initial.resx">
+      <DependentUpon>201612021455109_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

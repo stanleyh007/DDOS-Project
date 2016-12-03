@@ -1,0 +1,20 @@
+﻿@model DeveloperDOtnetStoreProject.Models.User.UserModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="">
+    <h4>User Details</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.Partial("_DetailsOrDelete")
+    }
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

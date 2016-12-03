@@ -1,0 +1,22 @@
+﻿@model DeveloperDOtnetStoreProject.Models.User.UserModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div class="">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(a => a.Id)
+
+        @Html.Partial("_CreateUpdate")
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" id="createSave" />
+            </div>
+        </div>
+    }
+</div>

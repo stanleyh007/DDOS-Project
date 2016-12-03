@@ -4,6 +4,7 @@ namespace DeveloperDOtnetStoreProject.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Models.Product.AddOn;
+    using Models.User;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -20,37 +21,15 @@ namespace DeveloperDOtnetStoreProject.Migrations
         protected override void Seed(DeveloperDOtnetStoreProject.Models.ApplicationDbContext context)
         {
             // Adding data to the CategoryHeaderModel table
-            context.CategoryHeader.AddOrUpdate(ch => ch.Name, new CategoryHeaderModel[] 
+            context.UserModels.AddOrUpdate(u => u.Id, new UserModel[] 
             {
-                new CategoryHeaderModel
-                {
-                    Name = "Grafikkort"
-                },
-                new CategoryHeaderModel
-                {
-                    Name = "Harddisk"
-                },
-                new CategoryHeaderModel
-                {
-                    Name = "Bundkort"
-                }
+                 new UserModel
+               { FirstName = "Taeyeon", LastName = "Kim",  Address = "Studesgaardsgade", PostalCode = "2100", City = "Copenhagen", Email = "kimtaeyeon@sm.kr", Password = "1024Krystal,"},
             });
-
-            var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            rm.Create(new IdentityRole("admin"));
-
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var client2 = new ApplicationUser { UserName = "a@b.c" };
-            var result1 = userManager.Create(client2, "P_assw0rd1");
-
-            if(result1.Succeeded == false)
-            {
-                client2 = userManager.FindByName("a@b.c");
-            }
 
             context.SaveChanges();
 
-            userManager.AddToRole(client2.Id, "admin");
+           
 
             //  This method will be called after migrating to the latest version.
 

@@ -25,6 +25,10 @@
                                         <li>@Html.ActionLink("ØNSKELISTE", "Index", "Home")</li>
                                         <li>@Html.ActionLink("KUNDESERVICE", "About", "Home")</li>
                                         @Html.Partial("_LoginPartial")
+                                        @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
+                                        {
+                                            <li>@Html.ActionLink("OPRET BRUGER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                        }
                                     </ul>     
                                 </div>
                            </nav>
@@ -66,14 +70,29 @@
                     </button>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
-                        <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
-                        <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>
-                        <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
-                        <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
-                        <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
-                    </ul>
+                        @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
+                        {
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
+                                <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
+                                <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>
+                                <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
+                                <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
+                                <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
+                            </ul>
+                        }
+
+                        @if (ViewContext.HttpContext.User.IsInRole("Kunde"))
+                        {
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
+                                <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
+                                <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>
+                                <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
+                                <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
+                                <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
+                            </ul>
+                        }
                 </div>
             </div>
         </div>
