@@ -15,7 +15,7 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails
         public int CategoryModelId { get; set; }
         public string CategoryName { get; set; }
         public int CategoryHeaderModelId { get; set; }
-        public CategoryHeaderModel CategoryHeaderModel { get; set; }
+        /*public CategoryHeaderModel CategoryHeaderModel { get; set; }*/
         public ICollection<CategoryItemModel> SubCategories { get; set; }
     }
 }

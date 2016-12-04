@@ -372,7 +372,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Product\AddOn\CategoryHeaderController.cs" />
     <Compile Include="Controllers\Product\AddOn\CostumerReviewController.cs" />
-    <Compile Include="Controllers\Product\AddOn\RatingController.cs" />
     <Compile Include="Controllers\Product\AddOn\TechnicalDetails\CategoryController.cs" />
     <Compile Include="Controllers\Product\AddOn\TechnicalDetails\CategoryItemController.cs" />
     <Compile Include="Controllers\Product\ProductController.cs" />
@@ -386,22 +385,20 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Product\AddOn\CategoryGatherModel.cs" />
     <Compile Include="Models\Product\AddOn\TechnicalDetails\CategoryItemModel.cs" />
     <Compile Include="Models\Product\AddOn\TechnicalDetails\CategoryModel.cs" />
     <Compile Include="Models\Product\AddOn\CategoryHeaderModel.cs" />
     <Compile Include="Models\Product\AddOn\CostumerReviewModel.cs" />
-    <Compile Include="Models\Product\AddOn\RatingModel.cs" />
     <Compile Include="Models\Product\ProductModel.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\CategoryHeaderRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\CostumerReviewRepository.cs" />
-    <Compile Include="Models\Repositories\Product\AddOn\RatingRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryItemRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\User\AddOn\WishListModel.cs" />
+    <Compile Include="Models\Views\ProductCreateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -490,6 +487,7 @@
     <Content Include="Views\CategoryItem\Index.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\CategoryItem\Create.cshtml" />
+    <Content Include="Views\ProductCreateView\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

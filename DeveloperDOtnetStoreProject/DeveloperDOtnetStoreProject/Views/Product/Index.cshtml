@@ -35,7 +35,7 @@
             @Html.DisplayNameFor(model => model.Reviews)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TechnicalSpecifications)
+            @*Html.DisplayNameFor(model => model.TechnicalSpecifications)*@
         </th>
         <th>
             @Html.DisplayName("Options")
@@ -57,7 +57,7 @@
 
             <td>@Html.DisplayFor(holder => itemData.Reviews)</td>
 
-            <td>@Html.DisplayFor(holder => itemData.TechnicalSpecifications)</td>
+            <td>@*Html.DisplayFor(holder => itemData.TechnicalSpecifications)*@</td>
 
             <td>
                 @if (Context.User.Identity.IsAuthenticated)

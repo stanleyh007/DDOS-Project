@@ -13,7 +13,6 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails
      */ 
     public class CategoryItemModel
     {
-        [Key]
         public int Id { get; set; }
         public string HeaderName { get; set; }
 
@@ -21,8 +20,5 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails
         public CategoryModel CategoryId { get; set; }
 
         public string ItemName { get; set; }
-        // Begge kan ikke bruges, udnyt at ItemName er en string
-        public bool isItemNameUSed { get; set; }
-        public virtual ICollection<string> ItemNames { get; set; }
     }
 }

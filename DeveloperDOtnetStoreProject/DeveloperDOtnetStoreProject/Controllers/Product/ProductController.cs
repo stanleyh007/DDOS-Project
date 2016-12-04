@@ -10,18 +10,24 @@ using System.Net;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn;
 using DeveloperDOtnetStoreProject.Models.Product.AddOn;
+using DeveloperDOtnetStoreProject.Models.Views;
+using System.Diagnostics;
 
 namespace DeveloperDOtnetStoreProject.Controllers.Product
 {
     public class ProductController : Controller
     {
-        private List<CategoryHeaderModel> ListCategoryHeaderModels;
+        // DROPDOWN
+        private ProductCreateViewModel viewModel = new ProductCreateViewModel();
+
+        private IGenericProductRepository<CategoryHeaderModel> categoryHeaderRepository;
+        
         // IF ninject dosn't work here remove 
         //using DeveloperDOtnetStoreProject.Interfaces;
         private IProductRepository productRepository;
         public ProductController(ProductRepository iprepo, CategoryHeaderRepository cHR)
         {
-            ListCategoryHeaderModels = cHR.GetAll();
+            categoryHeaderRepository = cHR;
             productRepository = iprepo;
         }
 
@@ -51,50 +57,73 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         [HttpGet]
         public ActionResult Create()
         {
+            ProductCreateViewModel productView = fullData(null);
             // Virker ikke Endnu
-            ViewBag.CategoryModelId = new SelectList(ListCategoryHeaderModels, "CategoryModelId", "CategoryName");
-            return View();
+            //ViewBag.CategoryModelId = new SelectList(ListCategoryHeaderModels, "CategoryModelId", "CategoryName");
+            return View(productView);
         }
 
         // POST: Product/Create
         [HttpPost]
-        public ActionResult Create(ProductModel product)
+        public ActionResult Create(ProductCreateViewModel productView)
         {
             if (ModelState.IsValid)
             {
                 // product is created
-                productRepository.InsertOrUpdate(product);
+                productRepository.InsertOrUpdate(productView.Product);
                 return RedirectToAction("Index");
             }
             
             return View();
         }
 
+        // DROPDOWN Controller
+        private ProductCreateViewModel fullData(int? id)
+        {
+            ProductCreateViewModel valueReturn = new ProductCreateViewModel();
+            if (productRepository.Find(id) != null)
+            {
+                valueReturn.Product = productRepository.Find(id);
+            } else
+            {
+                valueReturn.Product = new ProductModel();
+            }
+            
+            
+            valueReturn.categories = categoryHeaderRepository.GetAll();
+            
+            return valueReturn;
+        }
+
+        // With Use of Dropdown View
         // GET: Product/Edit/5
         public ActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return new HttpNotFoundResult();
             }
-            ProductModel product = productRepository.Find(id);
-
-            if(product == null)
+            // replaced
+            //ProductModel product = productRepository.Find(id);
+            ProductCreateViewModel productView = fullData(id);
+            if(productView == null)
             {
                 return new HttpNotFoundResult();
             }
-            return View(product);
+            Debug.WriteLine(productView);
+            return View(productView);
         }
 
         // POST: Product/Edit/5
         [HttpPost]
-        public ActionResult Edit(ProductModel product)
+        public ActionResult Edit(ProductCreateViewModel productView)
         {
             if(ModelState.IsValid) {
-                productRepository.InsertOrUpdate(product);
+                productRepository.InsertOrUpdate(productView.Product);
+
                 // TODO: Add update logic here
                 return RedirectToAction("Index");
-            }   
+            }
             return View();
         }
         
@@ -112,6 +141,15 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         public ProductModel Find(int? id)
         {
             return productRepository.Find(id);
+        }
+
+        // POST: CategoryHeader/Edit/5
+        [HttpPost]
+        public ActionResult addNewCategoryHeader(ProductCreateViewModel pcvm)
+        {
+            CategoryHeaderModel category = pcvm.CategoryHeader;
+            categoryHeaderRepository.InsertOrUpdate(category);
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

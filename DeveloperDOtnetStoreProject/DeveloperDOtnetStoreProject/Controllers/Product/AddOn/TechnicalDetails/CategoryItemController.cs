@@ -13,7 +13,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn.TechnicalDetails
     public class CategoryItemController : Controller
     {
         private CategoryItemRepository repository = new CategoryItemRepository();
-        
+        private CategoryRepository listRepository = new CategoryRepository();
 
         [AllowAnonymous]
         // GET: CategoryItem
@@ -35,7 +35,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn.TechnicalDetails
         // The ApplicationDbContext 
         public ActionResult Create()
         {
-            //ViewBag.CategoryModelId = new SelectList(listRepository.GetAll(), "CategoryModelId", "CategoryName");
+            ViewBag.CategoryModelId = new SelectList(listRepository.GetAll(), "CategoryModelId", "CategoryName");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn.TechnicalDetails
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.CategoryModelId = new SelectList(listRepository.GetAll(), "CategoryModelId", "CategoryName");
+            ViewBag.CategoryModelId = new SelectList(listRepository.GetAll(), "CategoryModelId", "CategoryName");
             return View();
         }
     }
