@@ -1,44 +1,53 @@
-﻿@model DeveloperDOtnetStoreProject.Models.Product.ProductModel
+﻿@model DeveloperDOtnetStoreProject.Models.Views.ProductCreateViewModel
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create Product</h2>
+<h2>Opret Product</h2>
 
 <div class="container">
     @using (Html.BeginForm())
     {
-        // Product Name
-        <div class="form-group">
-            @Html.LabelFor(t => t.NameHeader, new { @class = "control-label" } )
-            @Html.TextBoxFor(t => t.NameHeader, new { @class = "form-control" } )
-        </div>
-        <div class="form-group">
-            @Html.Label("Short Description", new { @class = "control-label" } )
-            @Html.TextBoxFor(t => t.NameDescription, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.Label("Price", new { @class = "control-label" })
-            @Html.TextBoxFor(t => t.Price, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.Label("Storage Count", new { @class = "control-label" })
-            @Html.TextBoxFor(t => t.QuantityStorage, new { @class = "form-control" })
-        </div>
-        /*<div class="form-group">
-            <!--<label>Firstname</label>-->
-            @Html.LabelFor(m => m.Firstname, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(a => a.Firstname, new { @class = "form-control" })
-                @Html.ValidationMessageFor(a => a.Firstname)
+        
+        <!-- Left window Starts -->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <!-- Product Name -->
+            <div class="form-group">
+                @Html.LabelFor(t => t.Product.NameHeader, new { @class = "control-label" })
+                @Html.TextBoxFor(t => t.Product.NameHeader, new { @class = "form-control" })
             </div>
-        </div>*/
+            <!-- Name Descriptiion -->
+            <div class="form-group">
+                @Html.Label("Short Description", new { @class = "control-label" })
+                @Html.TextBoxFor(t => t.Product.NameDescription, new { @class = "form-control" })
+            </div>
+            <!-- Price -->
+            <div class="form-group">
+                @Html.Label("Price", new { @class = "control-label" })
+                @Html.TextBoxFor(t => t.Product.Price, new { @class = "form-control" })
+            </div>
+        </div><!-- Left Windows Ends -->
+        <!-- Right window Start -->
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <!-- Quantity -->
+            <div class="form-group">
+                @Html.Label("Storage Count", new { @class = "control-label" })
+                @Html.TextBoxFor(t => t.Product.QuantityStorage, new { @class = "form-control" })
+            </div>
 
-        <input type="submit" value="Create" class="btn btn-primary" id="Create" />
-    }
-
-    <div>
+            <!-- TRYOUT: dropdown to Category Model -->
+            <div class="form-group">
+                @Html.Label("Kategori", new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.Product.ProductModelId,
+                                  new SelectList(Model.categories, "CategoryHeaderModelId", "Name", Model.Product.ProductModelId),
+                                  "<-- Select -->",
+                                  new { @class = "form-control" }
+                )
+            </div>
+        </div>
+        
         @Html.ActionLink("Back to List", "Index")
-    </div>
+        <input type="submit" value="Create" class="btn btn-primary" id="Create" />
+        }
 
 </div>

@@ -4,7 +4,6 @@ namespace DeveloperDOtnetStoreProject.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Models.Product.AddOn;
-    using Models.User;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,6 +14,7 @@ namespace DeveloperDOtnetStoreProject.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "DeveloperDOtnetStoreProject.Models.ApplicationDbContext";
         }
 
@@ -26,6 +26,18 @@ namespace DeveloperDOtnetStoreProject.Migrations
                  new UserModel
                { FirstName = "Taeyeon", LastName = "Kim",  Address = "Studesgaardsgade", PostalCode = "2100", City = "Copenhagen", Email = "kimtaeyeon@sm.kr", Password = "1024Krystal,"},
             });
+
+            var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            rm.Create(new IdentityRole("admin"));
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var client2 = new ApplicationUser { UserName = "a@b.c" };
+            var result1 = userManager.Create(client2, "P_assw0rd1");
+
+            if(result1.Succeeded == false)
+            {
+                client2 = userManager.FindByName("a@b.c");
+            }
 
             context.SaveChanges();
 

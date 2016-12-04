@@ -16,6 +16,5 @@ namespace DeveloperDOtnetStoreProject.Models.Product
         public int QuantityStorage { get; set; }
         public CategoryHeaderModel CategoryHeaderModelId { get; set; }
         public ICollection<CostumerReviewModel> Reviews { get; set; }
-        public ICollection<CategoryGatherModel> TechnicalSpecifications { get; set; }
     }
 }

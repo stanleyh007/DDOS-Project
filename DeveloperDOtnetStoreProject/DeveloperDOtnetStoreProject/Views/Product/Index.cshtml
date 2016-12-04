@@ -1,16 +1,20 @@
 ﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.Product.ProductModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Produkter";
 }
 
-<h2>Product Index - CHANGE TO PROPER NAME</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Produkter</h2>
+@if(Context.User.Identity.IsAuthenticated) { 
+    <p>
+        @Html.ActionLink("Opret Produkt", "Create")
+    </p>
+}
 
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductModelId)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.NameHeader)
         </th>
@@ -21,19 +25,45 @@
             @Html.DisplayNameFor(model => model.QuantityStorage)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.NameDescription)
+        </th>
+        <!-- Ekstra -->
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryHeaderModelId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reviews)
+        </th>
+        <th>
+            @*Html.DisplayNameFor(model => model.TechnicalSpecifications)*@
+        </th>
+        <th>
             @Html.DisplayName("Options")
         </th>
     </tr>
     @foreach (var itemData in Model)
     {
         <tr>
-            <td>@Html.DisplayFor(dataHolder => itemData.NameHeader)</td>
+            <td>@Html.DisplayFor(holder => itemData.ProductModelId)</td>
+
+            <td>@Html.DisplayFor(holder => itemData.NameHeader)</td>
 
             <td>@Html.DisplayFor(dataHolder => itemData.Price)</td>
 
             <td>@Html.DisplayFor(dataHolder => itemData.QuantityStorage)</td>
+
+            <td>@Html.DisplayFor(holder => itemData.CategoryHeaderModelId)</td>
+            
+
+            <td>@Html.DisplayFor(holder => itemData.Reviews)</td>
+
+            <td>@*Html.DisplayFor(holder => itemData.TechnicalSpecifications)*@</td>
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = itemData.ProductModelId }) |
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = itemData.ProductModelId })
+                } |
                 @Html.ActionLink("Details", "Details", new { id = itemData.ProductModelId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = itemData.ProductModelId })
             </td>
