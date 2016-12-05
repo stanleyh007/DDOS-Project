@@ -44,5 +44,8 @@ namespace DeveloperDOtnetStoreProject.Models
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
         // User
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.User.UserModel> UserModels { get; set; }
+
+        //WishList
+        public DbSet<DeveloperDOtnetStoreProject.Models.User.AddOn.WishListModel> WishList { get; set; }
     }
 }

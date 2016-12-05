@@ -373,6 +373,7 @@
     <Compile Include="Controllers\Product\AddOn\CategoryHeaderController.cs" />
     <Compile Include="Controllers\Product\AddOn\TechnicalDetails\CategoryItemController.cs" />
     <Compile Include="Controllers\Product\ProductController.cs" />
+    <Compile Include="Controllers\User\AddOn\WishlistController.cs" />
     <Compile Include="Controllers\User\RoleController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -398,7 +399,7 @@
     <Compile Include="Models\Repositories\Product\AddOn\CategoryHeaderRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryItemRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
-    <Compile Include="Models\Repositories\UserRepository.cs" />
+    <Compile Include="Models\Repositories\User\UserRepository.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\User\AddOn\WishListModel.cs" />
@@ -499,6 +500,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Wishlist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

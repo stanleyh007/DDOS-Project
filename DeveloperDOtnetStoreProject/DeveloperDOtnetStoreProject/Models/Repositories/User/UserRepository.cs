@@ -1,16 +1,18 @@
-﻿using System;
+﻿using DeveloperDOtnetStoreProject.Interfaces;
+using DeveloperDOtnetStoreProject.Models.Product;
+using DeveloperDOtnetStoreProject.Models.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using DeveloperDOtnetStoreProject.Interfaces;
-using DeveloperDOtnetStoreProject.Models.User;
+
+using System.Web.Mvc;
 
 namespace DeveloperDOtnetStoreProject.Models.Repositories
 {
     public class UserRepository : IUserRepository
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+      
         //Find specific user
         public UserModel Find(int? id)
         {
@@ -25,15 +27,15 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
         }
 
         //Add or edit
-        public void InsertOrUpdate(UserModel user)
+        public void InsertOrUpdate(UserModel model)
         {
-            if (user.Id <= 0)
+            if (model.Id <= 0)
             {
-                db.UserModels.Add(user);
+                db.UserModels.Add(model);
             }
             else
             {
-                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             }
             db.SaveChanges();
         }
@@ -54,6 +56,6 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
 
             db.SaveChanges();
             return true;
-        }  
+        }
     }
 }
