@@ -6,7 +6,7 @@
 
 <h2>Brugertype</h2>
 
-@if (ViewContext.HttpContext.User.IsInRole("Administrator"))
+@if (ViewContext.HttpContext.User.IsInRole("admin"))
 {
     <p>
         @Html.ActionLink("Create Role", "Create", "Role")

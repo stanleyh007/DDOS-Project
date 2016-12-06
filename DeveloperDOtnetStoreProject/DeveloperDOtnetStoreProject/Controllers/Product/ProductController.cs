@@ -35,9 +35,41 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         // GET: Product
         public ActionResult Index()
         {
-            return View(productRepository.GetAll());
+            return View(getProductViewModel());
+            //return View(productRepository.GetAll());
+        }
+        private ProductHomepageViewModel getProductViewModel()
+        {
+            ProductHomepageViewModel valueReturn = new ProductHomepageViewModel();
+            valueReturn.categoryHeaders = categoryHeaderRepository.GetAll();
+            valueReturn.products = productRepository.GetAll();
+            valueReturn.hereAreYou = "Produkter";
+            valueReturn.header = "Produkter";
+            valueReturn.products = addCategoryHeaderModel(valueReturn.products);
+
+            return valueReturn;
         }
 
+        private List<ProductModel> addCategoryHeaderModel(List<ProductModel> list)
+        {
+            
+            List<ProductModel> valueReturn = new List<ProductModel>();
+            
+            foreach(var item in list)
+            {
+                
+                CategoryHeaderModel cate = categoryHeaderRepository.Find(item.CategoryHModelId);
+                item.CategoryHeaderModel = cate;
+                valueReturn.Add(item);
+            }
+
+            foreach(var itemDB in valueReturn)
+            {
+                productRepository.InsertOrUpdate(itemDB);
+            }
+
+            return valueReturn;
+        }
         // GET: Product/Details/5
         public ActionResult Details(int? id)
         {
@@ -69,8 +101,11 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         {
             if (ModelState.IsValid)
             {
+                CategoryHeaderModel productCategory = categoryHeaderRepository.Find(productView.Product.CategoryHModelId);
+                productView.Product.CategoryHeaderModel = productCategory;
                 // product is created
                 productRepository.InsertOrUpdate(productView.Product);
+                
                 return RedirectToAction("Index");
             }
             
@@ -88,7 +123,6 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
             {
                 valueReturn.Product = new ProductModel();
             }
-            
             
             valueReturn.categories = categoryHeaderRepository.GetAll();
             
@@ -150,6 +184,24 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
             CategoryHeaderModel category = pcvm.CategoryHeader;
             categoryHeaderRepository.InsertOrUpdate(category);
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        // To Get View to Body by getting relevant data listed:
+        // - CategoryHeaderModel
+        // - Products
+        public ActionResult HomepageIndex()
+        {
+            return View(getView());
+        }
+
+        private ProductHomepageViewModel getView()
+        {
+            ProductHomepageViewModel viewReturn = new ProductHomepageViewModel();
+            viewReturn.categoryHeaders = categoryHeaderRepository.GetAll();
+            viewReturn.products = productRepository.GetAll();
+            viewReturn.hereAreYou = "Home -> Products";
+            viewReturn.header = "Hardware";
+            return viewReturn;
         }
     }
 }

@@ -370,6 +370,8 @@
     <Compile Include="Controllers\BodyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Store\BasketController.cs" />
+    <Compile Include="Controllers\View\ProductFormController.cs" />
     <Compile Include="Controllers\Product\AddOn\CategoryHeaderController.cs" />
     <Compile Include="Controllers\Product\AddOn\CostumerReviewController.cs" />
     <Compile Include="Controllers\Product\AddOn\TechnicalDetails\CategoryController.cs" />
@@ -380,7 +382,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IGenericProductRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Migrations\201612021455109_Initial.cs" />
     <Compile Include="Migrations\201612021455109_Initial.Designer.cs">
       <DependentUpon>201612021455109_Initial.cs</DependentUpon>
@@ -400,10 +404,15 @@
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
     <Compile Include="Models\Repositories\UserRepository.cs" />
+    <Compile Include="Models\Store\BasketModel.cs" />
+    <Compile Include="Models\Store\BasketProductModel.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\User\AddOn\WishListModel.cs" />
     <Compile Include="Models\Views\ProductCreateViewModel.cs" />
+    <Compile Include="Models\Views\ProductHomepageCategoryViewModel.cs" />
+    <Compile Include="Models\Views\ProductHomepageViewModel.cs" />
+    <Compile Include="Models\Views\ProductSmallFramePhotoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -412,8 +421,10 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DDOS-Troels-Stylesheet.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\DK_black_friday.jpg" />
+    <Content Include="Images\Hardware\ramKingston.jpg" />
     <Content Include="Images\logo_b2c.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="favicon.ico" />
@@ -490,11 +501,27 @@
     <Content Include="Views\CategoryHeader\Index.cshtml" />
     <Content Include="Views\CategoryHeader\Create.cshtml" />
     <Content Include="Views\CategoryItem\Index.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\ProductCreateView\Create.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\ProductForm\Index.cshtml" />
+    <Content Include="Views\CategoryItem\Create.cshtml" />
+    <Content Include="Views\Shared\_CreateUpdate.cshtml" />
+    <Content Include="Views\Shared\_DetailsOrDelete.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Product\HomepageIndex.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\ProductForm\HomepageCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Basket\" />
     <Folder Include="Views\CostumerReview\" />
+    <Folder Include="Views\ProductHomepageViewModel\" />
     <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>

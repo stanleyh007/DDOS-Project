@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.Product.ProductModel>
+﻿@model DeveloperDOtnetStoreProject.Models.Views.ProductHomepageViewModel
 @{
     ViewBag.Title = "Produkter";
 }
@@ -13,26 +13,26 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductModelId)
+            @Html.DisplayNameFor(model => model.products.First().ProductModelId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NameHeader)
+            @Html.DisplayNameFor(model => model.products.First().NameHeader)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.products.First().Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QuantityStorage)
+            @Html.DisplayNameFor(model => model.products.First().QuantityStorage)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NameDescription)
+            @Html.DisplayNameFor(model => model.products.First().NameDescription)
         </th>
         <!-- Ekstra -->
         <th>
-            @Html.DisplayNameFor(model => model.CategoryHeaderModelId)
+            @Html.DisplayNameFor(model => model.products.First().CategoryHModelId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Reviews)
+            @Html.DisplayNameFor(model => model.products.First().CategoryHeaderModel.Name)
         </th>
         <th>
             @*Html.DisplayNameFor(model => model.TechnicalSpecifications)*@
@@ -41,19 +41,23 @@
             @Html.DisplayName("Options")
         </th>
     </tr>
-    @foreach (var itemData in Model)
+    @foreach (var itemData in Model.products)
     {
         <tr>
             <td>@Html.DisplayFor(holder => itemData.ProductModelId)</td>
 
             <td>@Html.DisplayFor(holder => itemData.NameHeader)</td>
 
-            <td>@Html.DisplayFor(dataHolder => itemData.Price)</td>
+            <td>@Html.DisplayFor(holder => itemData.Price)</td>
 
-            <td>@Html.DisplayFor(dataHolder => itemData.QuantityStorage)</td>
+            <td>@Html.DisplayFor(holder => itemData.QuantityStorage)</td>
 
-            <td>@Html.DisplayFor(holder => itemData.CategoryHeaderModelId)</td>
+            <td>@Html.DisplayFor(holder => itemData.NameDescription)</td>
             
+            <td>@Html.DisplayFor(holder => itemData.CategoryHModelId)</td>
+
+            <td>@Html.DisplayFor(holder => itemData.CategoryHeaderModel.CategoryHeaderModelId)</td>
+            <td>@Html.DisplayFor(holder => itemData.CategoryHeaderModel.Name)</td>
 
             <td>@Html.DisplayFor(holder => itemData.Reviews)</td>
 

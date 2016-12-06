@@ -24,3 +24,66 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Link that black */
+.itemLongLink:link, .itemLongLink:hover, .itemLongLink:visited, .itemLongLink:active {
+    color: black;
+}
+
+.testBorder {
+    border: 1px solid black;
+}
+
+.fixedItemSize {
+    height: 100px;
+}
+
+.temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BottomTxtDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+
+/* Menu to Hardware Body */
+
+.hardwareMenu {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.hardwareMenu li {
+    background-color: #f1f1f1;
+    color: #000;
+    padding: 5px 16px 5px 10px;
+    margin-bottom: 2px;
+    text-decoration: none;
+}
+
+.hardwareMenu li a {
+    display: block;
+    color: #000;
+    width: 100%;
+    padding: 4px;
+    text-decoration: none;
+}
+
+/* A link called by classname and added:hover */
+.categgoryBodyMenu:hover {
+    background-color: #ebe9e9;
+    color: black;
+    text-decoration: underline;   
+}
+
+/* ProductContent is placed here */
+.productContent {
+    margin-top: 10px;
+
+}

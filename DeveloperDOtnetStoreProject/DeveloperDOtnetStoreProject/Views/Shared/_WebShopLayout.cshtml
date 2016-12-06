@@ -61,7 +61,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar">abc</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -70,29 +70,24 @@
                     </button>
                 </div>
                 <div class="navbar-collapse collapse">
-                        @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
+                        <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
+                        <li>@Html.ActionLink("HARDWARE", "HomepageIndex", "Product")</li>
+                        <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
+                        <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
+                        <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
+
+                        @if (ViewContext.HttpContext.User.IsInRole("admin"))
                         {
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
-                                <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
-                                <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>
-                                <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
-                                <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
-                                <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
-                            </ul>
+                            /* Add admin code link here */
                         }
 
                         @if (ViewContext.HttpContext.User.IsInRole("Kunde"))
                         {
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
-                                <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
-                                <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>
-                                <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
-                                <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
-                                <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
-                            </ul>
+                            /* Aad costumer login code link here */
                         }
+                    </ul>
                 </div>
             </div>
         </div>

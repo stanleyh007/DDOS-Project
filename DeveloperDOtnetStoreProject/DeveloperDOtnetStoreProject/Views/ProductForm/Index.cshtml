@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.Views.ProductSmallFramePhotoViewModel>
+@{
+    ViewBag.Title = "Index Information about products";
+}
+
+<h2>Product Small Frame Photo Path = #</h2>
+
+    <div class="container">
+        @foreach (var viewLong in Model)
+        {
+            <!-- Delete/add: testBorder from class for border -->
+            <div class="row testBorder">
+                <a href="~/Product/Details/@(viewLong.product.ProductModelId)" class="itemLongLink">
+                    <!-- Left Picture -->
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 fixedItemSize">
+                        <img class="img-responsive fixedItemSize" style="height: 100px" src="~/@(Model.First().BasicPathPicture)ramKingston.jpg" />
+                    </div>
+                    <!-- Content -->
+                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-0 fixedItemSize">
+                        <h4>@Html.DisplayFor(e => viewLong.product.NameHeader)</h4>
+                        <span style="font-size:12px;">@Html.DisplayFor(e => viewLong.product.NameDescription)</span>
+                        <br />
+                        <span>@Html.DisplayFor(e => viewLong.product.QuantityStorage)</span>
+                    </div>
+                    <!-- Price -->
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 fixedItemSize BottomTxtDiv">
+                        <span>@Html.DisplayFor(e => viewLong.product.Price) ,- </span>
+                        
+                    </div>
+                </a>
+            </div>
+        }
+</div>
+            

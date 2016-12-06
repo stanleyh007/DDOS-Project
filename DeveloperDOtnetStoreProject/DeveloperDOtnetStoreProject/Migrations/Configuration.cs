@@ -4,6 +4,7 @@ namespace DeveloperDOtnetStoreProject.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Models.Product.AddOn;
+    using Models.User;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -29,14 +30,25 @@ namespace DeveloperDOtnetStoreProject.Migrations
 
             var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             rm.Create(new IdentityRole("admin"));
+            rm.Create(new IdentityRole("Kunde"));
 
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            // admin
             var client2 = new ApplicationUser { UserName = "a@b.c" };
             var result1 = userManager.Create(client2, "P_assw0rd1");
 
-            if(result1.Succeeded == false)
+            // Kunde
+            var costumerClient = new ApplicationUser { UserName = "kunde@kunde.dk" };
+            var result2 = userManager.Create(client2, "P_assw0rd1");
+
+            if (result1.Succeeded == false)
             {
                 client2 = userManager.FindByName("a@b.c");
+            }
+
+            if (result2.Succeeded == false)
+            {
+                costumerClient = userManager.FindByName("kunde@kunde.dk");
             }
 
             context.SaveChanges();

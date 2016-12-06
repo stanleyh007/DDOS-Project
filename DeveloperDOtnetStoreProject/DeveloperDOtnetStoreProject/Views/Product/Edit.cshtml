@@ -46,7 +46,7 @@
 
             <div class="form-group">
                 @Html.Label("Kategori", new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.Product.ProductModelId,
+                @Html.DropDownListFor(m => m.Product.CategoryHeaderModel,
                                   new SelectList(Model.categories, "CategoryHeaderModelId", "Name", Model.Product.ProductModelId),
                                   "<-- Select -->",
                                   new { @class = "form-control" }

@@ -38,8 +38,8 @@
             <!-- TRYOUT: dropdown to Category Model -->
             <div class="form-group">
                 @Html.Label("Kategori", new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.Product.ProductModelId,
-                                  new SelectList(Model.categories, "CategoryHeaderModelId", "Name", Model.Product.ProductModelId),
+                @Html.DropDownListFor(m => m.Product.CategoryHModelId,
+                                  new SelectList(Model.categories, "CategoryHeaderModelId", "Name"),
                                   "<-- Select -->",
                                   new { @class = "form-control" }
                 )
