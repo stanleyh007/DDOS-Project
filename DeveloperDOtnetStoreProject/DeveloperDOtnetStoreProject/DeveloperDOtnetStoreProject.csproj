@@ -381,6 +381,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Interfaces\IGenericProductRepository.cs" />
+    <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Migrations\201612021455109_Initial.cs" />
     <Compile Include="Migrations\201612021455109_Initial.Designer.cs">
       <DependentUpon>201612021455109_Initial.cs</DependentUpon>
@@ -483,6 +485,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Shared\_CreateUpdate.cshtml" />
+    <Content Include="Views\Shared\_DetailsOrDelete.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Shared\_WebShopLayout.cshtml" />
