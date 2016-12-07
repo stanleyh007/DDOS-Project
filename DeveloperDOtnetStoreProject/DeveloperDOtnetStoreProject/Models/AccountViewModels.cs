@@ -81,6 +81,23 @@ namespace DeveloperDOtnetStoreProject.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        //UserModel
+        [Required]
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+        [Required]
+        [Display(Name = "Postal code")]
+        public string PostalCode { get; set; }
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+
         //Give Role a name
         public string Name { get; set; }
 
@@ -89,8 +106,6 @@ namespace DeveloperDOtnetStoreProject.Models
        
         public string Role { get; set; }
         public IList<System.Web.Mvc.SelectListItem> Rolelist { get;  set; }
-
-        public UserModel UserModel { get; set; }
     }
 
     public class ResetPasswordViewModel

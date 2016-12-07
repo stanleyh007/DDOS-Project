@@ -10,7 +10,7 @@ namespace DeveloperDOtnetStoreProject.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DeveloperDOtnetStoreProject.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
@@ -18,18 +18,37 @@ namespace DeveloperDOtnetStoreProject.Migrations
             ContextKey = "DeveloperDOtnetStoreProject.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(DeveloperDOtnetStoreProject.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
-            // Adding data to the CategoryHeaderModel table
-            context.UserModels.AddOrUpdate(u => u.Id, new UserModel[] 
+            // Adding data to User
+            var manager = new UserManager<ApplicationUser>(
+                new UserStore<ApplicationUser>(
+                    context));
+
+            for (int i = 0; i < 4; i++)
             {
-                 new UserModel
-               { FirstName = "Taeyeon", LastName = "Kim",  Address = "Studesgaardsgade", PostalCode = "2100", City = "Copenhagen", Email = "kimtaeyeon@sm.kr", Password = "1024Krystal,"},
-            });
+                var user = new ApplicationUser()
+                {
+                    UserName = string.Format("User{0}", i.ToString()),
 
-            context.SaveChanges();
+                    //Add following seed data
+                    FirstName = string.Format("FirstName{0}", i.ToString()),
+                    LastName = string.Format("LastName{0}", i.ToString()),
+                    Address = string.Format("Address{0}", i.ToString()),
+                    PostalCode = string.Format("PostalCode{0}", i.ToString()),
+                    City = string.Format("City{0}", i.ToString()),
+                    
+                };
+                manager.Create(user, string.Format("Password{0}", i.ToString()));
+            }
 
-           
+            //Adding data to Role
+            var role = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            role.Create(new IdentityRole("Administrator"));
+            role.Create(new IdentityRole("Kunde"));
+
+            
 
             //  This method will be called after migrating to the latest version.
 

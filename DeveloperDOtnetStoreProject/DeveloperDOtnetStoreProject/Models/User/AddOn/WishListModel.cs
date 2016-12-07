@@ -10,6 +10,6 @@ namespace DeveloperDOtnetStoreProject.Models.User.AddOn
     {
         public int WishListModelId { get; set; }
         public ProductModel ProductModelId { get; set; }
-        public UserModel UserModelId { get; set; }
+        public ApplicationUser UserModelId { get; set; }
     }
 }

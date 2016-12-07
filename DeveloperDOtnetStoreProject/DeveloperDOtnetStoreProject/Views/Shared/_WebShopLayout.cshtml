@@ -27,7 +27,7 @@
                                         @Html.Partial("_LoginPartial")
                                         @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
                                         {
-                                            <li>@Html.ActionLink("OPRET BRUGER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                            <li>@Html.ActionLink("OPRET BRUGER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerAdminLink" })</li>
                                         }
                                     </ul>     
                                 </div>

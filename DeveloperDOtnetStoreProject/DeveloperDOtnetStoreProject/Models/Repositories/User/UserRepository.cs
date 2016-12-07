@@ -14,22 +14,22 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
         private ApplicationDbContext db = new ApplicationDbContext();
       
         //Find specific user
-        public UserModel Find(int? id)
+        public ApplicationUser Find(string id)
         {
            return db.UserModels.Find(id);
         }
 
         //Get all users
-          public List<UserModel> GetAll()
+          public List<ApplicationUser> GetAll()
         {
-            List<UserModel> users = db.UserModels.ToList();
+            List<ApplicationUser> users = db.UserModels.ToList();
             return users;
         }
 
         //Add or edit
-        public void InsertOrUpdate(UserModel model)
+        public void InsertOrUpdate(ApplicationUser model)
         {
-            if (model.Id <= 0)
+            if (model.Id == null)
             {
                 db.UserModels.Add(model);
             }
@@ -37,20 +37,21 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
             {
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             }
+
             db.SaveChanges();
         }
 
         //Delete user
-        public bool Delete(int? id)
+        public bool Delete(string id)
         {
-            if (id <= 0)
+            if (id == null)
             {
                 System.Diagnostics.Debug.WriteLine("This Id does not exist");
                 return false;
             }
             else
             {
-                UserModel user = Find(id);
+                ApplicationUser user = Find(id);
                 db.UserModels.Remove(user);
             }
 

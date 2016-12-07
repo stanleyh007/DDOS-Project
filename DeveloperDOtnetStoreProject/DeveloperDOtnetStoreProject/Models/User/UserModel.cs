@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
+
 namespace DeveloperDOtnetStoreProject.Models.User
 {
     public class UserModel

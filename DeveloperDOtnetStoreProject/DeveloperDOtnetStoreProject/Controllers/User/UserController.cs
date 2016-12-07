@@ -20,33 +20,6 @@ namespace DeveloperDOtnetStoreProject.Controllers.User
     public class UserController : Controller
     {
         private UserRepository userRepo = new UserRepository();
-        private ApplicationUserManager _userManager;
-        private ApplicationSignInManager _signInManager;
-
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
-        }
-
-        public UserController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-        public ApplicationUserManager UserManager
-        {
-            get { return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
-            private set { _userManager = value; }
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get{ return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
-            private set { _signInManager = value; }
-        }
 
         [AllowAnonymous]
         // Get: User
@@ -56,11 +29,12 @@ namespace DeveloperDOtnetStoreProject.Controllers.User
         }
 
         // Get: user details
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             return View(userRepo.Find(id));
         }
 
+        /*
         [AllowAnonymous]
         // Get: user creation
         [HttpGet]
@@ -73,36 +47,27 @@ namespace DeveloperDOtnetStoreProject.Controllers.User
         // Post: user creation
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(UserModel model)
+        public ActionResult Create(ApplicationUser model)
         {
             if (ModelState.IsValid)
             {
                 // user is created
                 userRepo.InsertOrUpdate(model);
-
-                //user save to login
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    return RedirectToAction("Index", "Body");
-                }
-                AddErrors(result);
             }
             return View();
         }
+        */
         
         // Get: user update
         [HttpGet]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpNotFoundResult();
             }
 
-            UserModel user = userRepo.Find(id);
+            ApplicationUser user = userRepo.Find(id);
 
             if (user == null)
             {
@@ -114,7 +79,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.User
 
         // Post: user update
         [HttpPost]
-        public ActionResult Edit(UserModel user)
+        public ActionResult Edit(ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
@@ -125,14 +90,14 @@ namespace DeveloperDOtnetStoreProject.Controllers.User
         }
 
         // Get: user remove
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            UserModel user = userRepo.Find(id);
+            ApplicationUser user = userRepo.Find(id);
 
             if (user == null)
             {
@@ -144,7 +109,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.User
 
         // Post: user remove
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             userRepo.Delete(id);
             return RedirectToAction("Index");

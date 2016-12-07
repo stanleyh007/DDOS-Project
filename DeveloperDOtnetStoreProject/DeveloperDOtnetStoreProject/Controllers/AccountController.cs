@@ -172,7 +172,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
             }
         }
 
-        //
+        // Regiter Customer/Admin
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -197,7 +197,16 @@ namespace DeveloperDOtnetStoreProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Address = model.Address,
+                    PostalCode = model.PostalCode,
+                    City = model.City
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -212,7 +221,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Body");
                 }
                 AddErrors(result);
             }
@@ -221,6 +230,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
             return View(model);
         }
 
+        /*
         //
         // GET: /Account/RegisterCustomer
         [AllowAnonymous]
@@ -258,6 +268,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        */
 
 
         //
