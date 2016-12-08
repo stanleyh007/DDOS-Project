@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DeveloperDOtnetStoreProject.Models;
 using DeveloperDOtnetStoreProject.Models.User;
+using DeveloperDOtnetStoreProject.Models.Repositories;
+using System.Net;
 
 namespace DeveloperDOtnetStoreProject.Controllers
 {
@@ -20,6 +22,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
         private ApplicationUserManager _userManager;
 
         public ApplicationDbContext db = new ApplicationDbContext();
+        private UserRepository userRepo = new UserRepository();
 
         public AccountController()
         {
@@ -178,14 +181,14 @@ namespace DeveloperDOtnetStoreProject.Controllers
         public ActionResult Register()
         {
             //Choose Role for user
-            
             var model = new RegisterViewModel();
             var roles = db.Roles.ToList();
             foreach (var r in roles)
             {
-                model.Rolelist.Add(new SelectListItem(){Text = r.Name, Value = r.Name});
+                model.Rolelist.Add(new SelectListItem() { Text = r.Name, Value = r.Name });
             }
             return View(model);
+            //return View();
         }
 
         //
@@ -548,7 +551,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Body");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
@@ -580,5 +583,76 @@ namespace DeveloperDOtnetStoreProject.Controllers
             }
         }
         #endregion
+
+        //User Model
+        [AllowAnonymous]
+        // Get: User
+        public ActionResult Index()
+        {
+            return View(userRepo.GetAll());
+        }
+
+        // Get: user details
+        public ActionResult Details(string id)
+        {
+            return View(userRepo.Find(id));
+        }
+
+        // Get: user update
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            ApplicationUser user = userRepo.Find(id);
+
+            if (user == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return View(user);
+        }
+
+        // Post: user update
+        [HttpPost]
+        public ActionResult Edit(ApplicationUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                userRepo.InsertOrUpdate(user);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        // Get: user remove
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ApplicationUser user = userRepo.Find(id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(user);
+        }
+
+        // Post: user remove
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            userRepo.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

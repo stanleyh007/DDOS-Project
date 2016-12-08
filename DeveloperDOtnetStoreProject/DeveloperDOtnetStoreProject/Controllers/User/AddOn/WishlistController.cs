@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using DeveloperDOtnetStoreProject.Models.Product;
 using DeveloperDOtnetStoreProject.Models.User;
 using DeveloperDOtnetStoreProject.Models.User.AddOn;
+using AutoMapper;
 
 namespace DeveloperDOtnetStoreProject.Controllers.User.AddOn
 {
@@ -17,6 +18,21 @@ namespace DeveloperDOtnetStoreProject.Controllers.User.AddOn
         public ActionResult Index()
         {
             return View(db.WishList.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(ProductModel product)
+        {
+            WishListModel wishlish = Mapper.Map<ProductModel, WishListModel>(product);
+            db.WishList.Add(wishlish);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

@@ -73,6 +73,8 @@
                         @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
                         {
                             <ul class="nav navbar-nav">
+                                <text>Administrator</text>
+                                <li>@Html.ActionLink("Kunde/Admin", "Index", "Account")</li>
                                 <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
                                 <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
                                 <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>

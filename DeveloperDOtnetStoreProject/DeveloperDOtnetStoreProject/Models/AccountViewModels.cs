@@ -103,9 +103,10 @@ namespace DeveloperDOtnetStoreProject.Models
 
         public RegisterViewModel()
         { Rolelist = new List<System.Web.Mvc.SelectListItem>(); }
-       
+
         public string Role { get; set; }
-        public IList<System.Web.Mvc.SelectListItem> Rolelist { get;  set; }
+        public IList<System.Web.Mvc.SelectListItem> Rolelist { get; set; }
+
     }
 
     public class ResetPasswordViewModel

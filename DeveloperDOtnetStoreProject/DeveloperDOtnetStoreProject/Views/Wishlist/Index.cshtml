@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.User.AddOn.WishListModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Wishlist</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductModelId.NameHeader)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductModelId.NameHeader)
+            </td>
+        </tr>
+    }
+</table>

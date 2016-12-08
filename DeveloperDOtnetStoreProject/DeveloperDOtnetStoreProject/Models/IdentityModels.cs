@@ -35,7 +35,7 @@ namespace DeveloperDOtnetStoreProject.Models
         [Required]
         public string City { get; set; }
 
-        public ICollection<WishListModel> WishList { get; set; }
+        public virtual ICollection<WishListModel> WishList { get; set; }
         public ICollection<PurchaseModel> PurchaseHistory { get; set; }
     }
 
@@ -59,8 +59,6 @@ namespace DeveloperDOtnetStoreProject.Models
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItem { get; set; }
 
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
-        // User
-        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.ApplicationUser> UserModels { get; set; }
 
         //WishList
         public DbSet<DeveloperDOtnetStoreProject.Models.User.AddOn.WishListModel> WishList { get; set; }
