@@ -385,11 +385,9 @@
     <Compile Include="Interfaces\IGenericProductRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
     <Compile Include="Interfaces\IUserRepositoty.cs" />
-    <Compile Include="Migrations\201612021455109_Initial.cs" />
-    <Compile Include="Migrations\201612021455109_Initial.Designer.cs">
-      <DependentUpon>201612021455109_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\ConfigurationsTemp.cs" />
+    <Compile Include="Migrations\ProductDatabaseConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -424,7 +422,20 @@
     <Content Include="Content\DDOS-Troels-Stylesheet.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\DK_black_friday.jpg" />
+    <Content Include="Images\Hardware\Bundkort.jpg" />
+    <Content Include="Images\Hardware\Cooling.jpg" />
+    <Content Include="Images\Hardware\Grafikkort.jpg" />
+    <Content Include="Images\Hardware\Harddisk.jpg" />
+    <Content Include="Images\Hardware\KingstonRam.jpg" />
+    <Content Include="Images\Hardware\Lydkort.jpg" />
+    <Content Include="Images\Hardware\Nvidia Grafikkort.jpg" />
+    <Content Include="Images\Hardware\NvidiaGrafikkort.jpg" />
+    <Content Include="Images\Hardware\preview.png" />
+    <Content Include="Images\Hardware\Processor-CPU.jpg" />
+    <Content Include="Images\Hardware\Ram.jpg" />
     <Content Include="Images\Hardware\ramKingston.jpg" />
+    <Content Include="Images\Icons\roundFacebookBlue.png" />
+    <Content Include="Images\Icons\roundFacebookWhite.png" />
     <Content Include="Images\logo_b2c.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="favicon.ico" />
@@ -516,6 +527,7 @@
     <Content Include="Views\Product\HomepageIndex.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\ProductForm\HomepageCategory.cshtml" />
+    <Content Include="Views\ProductForm\HomepageProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -529,11 +541,6 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612021455109_Initial.resx">
-      <DependentUpon>201612021455109_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

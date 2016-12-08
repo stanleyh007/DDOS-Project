@@ -11,5 +11,6 @@ namespace DeveloperDOtnetStoreProject.Models.Store
         public int Id { get; set; }
         public List<BasketProductModel> products { get; set; }
         public double orderTotal { get; set; }
+        public int pieces { get; set; }
     }
 }

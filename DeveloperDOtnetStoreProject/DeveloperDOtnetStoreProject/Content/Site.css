@@ -52,6 +52,14 @@ textarea {
 }
 
 /* Menu to Hardware Body */
+/* Div surrounding Menu Header */
+.productHeaderMenu {
+    height: 35px;
+    /*border: 1px solid black;*/
+    padding-top: 6px;
+    padding-left: 14px;
+    font-weight: bold;
+}
 
 .hardwareMenu {
     list-style-type: none;
@@ -82,8 +90,73 @@ textarea {
     text-decoration: underline;   
 }
 
-/* ProductContent is placed here */
+/* 
+    Product List Content is placed here 
+*/
 .productContent {
     margin-top: 10px;
+}
 
+/* Product Hover */
+.hoverBorder:hover {
+    border: 1px solid grey;
+}
+
+.itemHoverPadding {
+    border: 1px solid white;
+}
+/*
+    Product Details Close Up is placed here
+*/
+
+.inside-full-height {
+  /*
+  // if you want to give content full height give him height: 100%;
+  // with content full height you can't apply margins to the content
+  // content full height does not work in ie http://stackoverflow.com/questions/27384433/ie-display-table-cell-child-ignores-height-100
+  */
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* columns of same height styles */
+.content {
+    height: 100%;
+}
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+}
+.col-height {
+  display: table-cell;
+  float: none;
+  height: 100%;
+}
+
+
+/* Stolen from some site */
+@media (min-width: 768px) {
+  .row-sm-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-sm-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-sm-top {
+    vertical-align: top;
+  }
+  .col-sm-middle {
+    vertical-align: middle;
+  }
+  .col-sm-bottom {
+    vertical-align: bottom;
+  }
 }

@@ -11,6 +11,8 @@ using Microsoft.Ajax.Utilities;
 using WebGrease.Css.Extensions;
 using DeveloperDOtnetStoreProject.Models.Product.AddOn;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn;
+using DeveloperDOtnetStoreProject.Models.Repositories;
+using DeveloperDOtnetStoreProject.Models.User;
 
 namespace DeveloperDOtnetStoreProject.Controllers.Views
 {
@@ -31,6 +33,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Views
             populateViewModel();
         }
 
+        // Populates ViewList with ALL products
         private void populateViewModel()
         {
             List<ProductModel> list = productRepository.GetAll();
@@ -64,14 +67,14 @@ namespace DeveloperDOtnetStoreProject.Controllers.Views
                 objectReturn.category = categoryHeaderRepository.Find(categoryId);
                 objectReturn.categories = categoryHeaderRepository.GetAll();
                 objectReturn.header = objectReturn.category.Name;
-                objectReturn.hereAreYou = "Products > Hardware";
+                objectReturn.hereAreYou = " > Hardware";
                 objectReturn.BasicPathPicture = "Images/Hardware/";
                 objectReturn.products = new List<ProductModel>();
                 /* Filters the list to the list of this Category */
                 foreach(var item in list)
                 {
                     // If true then put product in objectReturn.products
-                    if(categoryId == item.CategoryHModelId)
+                    if(categoryId == item.CategoryHModelId && (categoryHeaderRepository.Find(item.CategoryHModelId)) != null)
                     {
                         int a = item.CategoryHModelId;
                         objectReturn.products.Add(item);
@@ -79,6 +82,34 @@ namespace DeveloperDOtnetStoreProject.Controllers.Views
                 }
             }
             return objectReturn;
+        }
+
+        [HttpGet]
+        // To get the model for the product Details View
+        // Add int? id of User
+        // Try with userId and productId
+        public ActionResult HomepageProductDetails(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpNotFoundResult();
+            }
+            ProductModel product = productRepository.Find(id);
+            if(product == null)
+            {
+                return View(new ProductModel());
+            }
+            // Adding categoryHeaderModel
+            product.CategoryHeaderModel = categoryHeaderRepository.Find(product.CategoryHModelId);
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult HomepageProductDetails(ProductModel product)
+        {
+
+            // Go to CostumerReview Create
+            return View();
         }
     }
 }

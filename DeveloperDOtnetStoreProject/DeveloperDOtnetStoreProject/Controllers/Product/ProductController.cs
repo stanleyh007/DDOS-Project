@@ -199,7 +199,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
             ProductHomepageViewModel viewReturn = new ProductHomepageViewModel();
             viewReturn.categoryHeaders = categoryHeaderRepository.GetAll();
             viewReturn.products = productRepository.GetAll();
-            viewReturn.hereAreYou = "Home -> Products";
+            viewReturn.hereAreYou = " Home";
             viewReturn.header = "Hardware";
             return viewReturn;
         }

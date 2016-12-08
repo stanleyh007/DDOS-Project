@@ -37,7 +37,7 @@ namespace DeveloperDOtnetStoreProject.Models
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.ProductModel> Products { get; set; }
         // -> AddOn 
         //    -> CategoryHeaderModel
-        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel> CategoryHeader { get; set; }
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CategoryHeaderModel> CategoryHeaderModels { get; set; }
         //    -> CostumerReview
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.CostumerReviewModel> CostumerReview { get; set; }
 

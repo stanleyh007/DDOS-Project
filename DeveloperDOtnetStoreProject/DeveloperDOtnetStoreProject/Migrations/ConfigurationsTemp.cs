@@ -1,3 +1,4 @@
+﻿/*
 namespace DeveloperDOtnetStoreProject.Migrations
 {
     using Microsoft.AspNet.Identity;
@@ -9,7 +10,6 @@ namespace DeveloperDOtnetStoreProject.Migrations
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Data.Entity.Validation;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DeveloperDOtnetStoreProject.Models.ApplicationDbContext>
@@ -23,10 +23,11 @@ namespace DeveloperDOtnetStoreProject.Migrations
 
         protected override void Seed(DeveloperDOtnetStoreProject.Models.ApplicationDbContext context)
         {
+*/  
             // Adding data to the CategoryHeaderModel table
             /*ProductDatabaseConfiguration cPD = new ProductDatabaseConfiguration();
             context = cPD.getProductDatabaseUpdate(context);*/
-
+/*
             var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             rm.Create(new IdentityRole("admin"));
             rm.Create(new IdentityRole("Kunde"));
@@ -49,59 +50,67 @@ namespace DeveloperDOtnetStoreProject.Migrations
             {
                 costumerClient = userManager.FindByName("kunde@kunde.dk");
             }
-            
-            // Get all nye rows to database
-            ProductDatabaseConfiguration getDbContext = new ProductDatabaseConfiguration();
-            context = getDbContext.getProductDatabaseUpdate(context);
-            //context = getProductDatabaseUpdate(context);
-            try {
-                context.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-            }
+
+            context = getProductDatabaseUpdate(context);
+            context.SaveChanges();
+
+
+
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
 
         private ApplicationDbContext getProductDatabaseUpdate(ApplicationDbContext context)
         {
             // CateGoryHeader
             context.CategoryHeaderModels.AddOrUpdate(s => s.Name, new CategoryHeaderModel[] {
-                                                new CategoryHeaderModel
-                                                {
-                                                    CategoryHeaderModelId = 1,
-                                                    Name = "Grafikkort"
-                                                },
-                                                new CategoryHeaderModel
-                                                {
-                                                    CategoryHeaderModelId = 2,
-                                                    Name = "Harddisk"
-                                                },
-                                                new CategoryHeaderModel
-                                                {
-                                                    CategoryHeaderModelId = 3,
-                                                    Name = "Bundkort"
-                                                },
-                                                new CategoryHeaderModel
-                                                {
-                                                    CategoryHeaderModelId = 4,
-                                                    Name = "Ram"
-                                                },
-                                                new CategoryHeaderModel
-                                                {
+                                               new CategoryHeaderModel
+                                               {
+                                                   CategoryHeaderModelId = 1,
+                                                   Name = "Grafikkort"
+                                               },
+                                               new CategoryHeaderModel
+                                               {
+                                                   CategoryHeaderModelId = 2,
+                                                   Name = "Harddisk"
+                                               },
+                                               new CategoryHeaderModel
+                                               {
+                                                   CategoryHeaderModelId = 3,
+                                                   Name = "Bundkort"
+                                               },
+                                               new CategoryHeaderModel
+                                               {
+                                                   CategoryHeaderModelId = 4,
+                                                   Name = "Ram"
+                                               },
+                                               new CategoryHeaderModel
+                                               {
                                                     CategoryHeaderModelId = 5,
                                                     Name = "Lydkort"
-                                                }
+                                               }
             });
-            
+*/
             // Products
-            context.Products.AddOrUpdate(s => s.NameHeader, new ProductModel[] {
+            /* 
+                public string NameHeader { get; set; }
+                public string NameDescription { get; set; }
+                public double Price { get; set; }
+                public int QuantityStorage { get; set; }
+                public int CategoryHModelId { get; set; }
+             */
+/*
+             context.Products.AddOrUpdate(s => s.NameHeader, new ProductModel[] {
                                         new ProductModel
                                         {
                                             NameHeader = "Nvidia GFx 9000 Series",
@@ -138,3 +147,4 @@ namespace DeveloperDOtnetStoreProject.Migrations
         }
     }
 }
+*/

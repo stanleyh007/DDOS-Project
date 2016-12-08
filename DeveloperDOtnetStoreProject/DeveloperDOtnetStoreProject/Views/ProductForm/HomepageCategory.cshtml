@@ -2,9 +2,15 @@
 
 @{
     ViewBag.Title = "HomepageCatergoryView";
+    ViewBag.Header = " Home";
 }
 
-<div class="container">
+<!-- <div class="container"> -->
+<div class="row">
+    <div class="col-sm-12">
+        <h5><b>Her er du:</b> @ViewBag.Header @Model.hereAreYou > @Model.header</h5>
+    </div>
+</div>
     <div class="row site-content-table">
         <!-- Set up Left (3 Grid) and Right (9 Grid) coloum -->
         <div class="col-sm-3 pull-left site-content-table-footer"></div>
@@ -12,7 +18,7 @@
             <div class="row site-row-margin-top">
                 <div class="col-sm-12 center-block">
                     <a href="/" target="_self" rel="nofollow">
-                        <img src="~/Images/DK_black_friday.jpg" alt-style="max-width: 100%" />
+                        <!--<img src="~/Images/DK_black_friday.jpg" alt-style="max-width: 100%" /> -->
                     </a>
                 </div>
             </div>
@@ -20,15 +26,16 @@
         <!-- Here A Start -->
         <!-- Place holder for the Left div as a Menu -->
         <div class="site-content-table-header col-sm-3">
-            <h5><b>Her er du:</b> @Model.hereAreYou > @Model.header</h5>
+            
             <nav class="navbar navbar-light bg-faded">
                 <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <div class="productHeaderMenu">
+                        <span class="textHeader">@Model.header</span>
+                    </div>
                     <ul class="hardwareMenu">
-                        @Model.header
-
                         @foreach (var category in Model.categories)
                         {
-                            <li><a class="categgoryBodyMenu" href="~/ProductForm/Index">@category.Name</a></li>
+                            <li><a class="categgoryBodyMenu" href="/ProductForm/HomepageCategory/@category.CategoryHeaderModelId">@category.Name</a></li>
                         }
                     </ul>
                 </div>
@@ -38,11 +45,11 @@
         <div class="col-sm-9 pull-right productContent" id="content">
             @foreach (var product in Model.products)
             {
-                <div class="row testBorder">
-                    <a href="~/Product/Details/@(product.ProductModelId)" class="itemLongLink">
+                <div class="row hoverBorder itemHoverPadding">
+                    <a href="~/ProductForm/HomepageProductDetails/@(product.ProductModelId)" class="itemLongLink">
                         <!-- Left Picture -->
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 fixedItemSize">
-                            <img class="img-responsive fixedItemSize" style="height: 100px" src="~/@(Model.BasicPathPicture)ramKingston.jpg" />
+                            <img class="img-responsive fixedItemSize" style="height: 100px" src="~/@(Model.BasicPathPicture)@(Model.header).jpg" />
                         </div>
                         <!-- Content -->
                         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-0 fixedItemSize">
@@ -60,4 +67,4 @@
             }
         </div>
     </div>
-</div>
+<!-- </div> --> 

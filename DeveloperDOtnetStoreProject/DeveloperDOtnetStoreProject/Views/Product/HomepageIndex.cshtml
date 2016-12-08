@@ -1,10 +1,15 @@
 ﻿@model DeveloperDOtnetStoreProject.Models.Views.ProductHomepageViewModel
 @{
-    ViewBag.Title = Model.header;
+    ViewBag.Title = "Hardware Forside";
 }
 
-<div class="container">
+<!-- <div class="container"> -->
     <div class="row site-content-table">
+        <div class="row">
+            <div class="col-sm-12">
+                <h5><b>Her er du:</b> @Model.hereAreYou > @Model.header</h5>
+            </div>
+        </div>
         <!-- Set up Left (3 Grid) and Right (9 Grid) coloum -->
         <div class="col-sm-3 pull-left site-content-table-footer"></div>
         <div class="col-sm-9 pull-right site-content-table-footer">
@@ -18,13 +23,14 @@
         </div>
         <!-- Here A Start -->
         <!-- Place holder for the Left div as a Menu -->
-        <div class="site-content-table-header col-sm-3">
-            <h5><b>Her er du:</b> @Model.hereAreYou</h5>
+        <div class="col-sm-3">
+            
             <nav class="navbar navbar-light bg-faded">
                 <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <div class="productHeaderMenu">
+                        <span class="textHeader">@Model.header</span>
+                    </div>
                     <ul class="hardwareMenu">
-                        @Model.header
-                        
                         @foreach (var category in Model.categoryHeaders)
                         {
                             <li><a class="categgoryBodyMenu" href="/ProductForm/HomepageCategory/@category.CategoryHeaderModelId">@category.Name</a></li>
@@ -38,4 +44,4 @@
             
         </div>
     </div>
-</div>
+<!-- </div> -->
