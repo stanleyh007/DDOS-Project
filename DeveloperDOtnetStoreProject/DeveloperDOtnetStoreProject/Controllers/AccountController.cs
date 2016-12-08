@@ -15,7 +15,7 @@ using System.Net;
 
 namespace DeveloperDOtnetStoreProject.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
