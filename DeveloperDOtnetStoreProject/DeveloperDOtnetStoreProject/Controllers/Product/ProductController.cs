@@ -20,6 +20,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         // DROPDOWN
         private ProductCreateViewModel viewModel = new ProductCreateViewModel();
 
+        ProductHomepageViewModel productHpVModel;
         private IGenericProductRepository<CategoryHeaderModel> categoryHeaderRepository;
         
         // IF ninject dosn't work here remove 
@@ -29,6 +30,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         {
             categoryHeaderRepository = cHR;
             productRepository = iprepo;
+            productHpVModel = new ProductHomepageViewModel();
         }
 
         [AllowAnonymous]
@@ -38,16 +40,16 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
             return View(getProductViewModel());
             //return View(productRepository.GetAll());
         }
+
         private ProductHomepageViewModel getProductViewModel()
         {
-            ProductHomepageViewModel valueReturn = new ProductHomepageViewModel();
-            valueReturn.categoryHeaders = categoryHeaderRepository.GetAll();
-            valueReturn.products = productRepository.GetAll();
-            valueReturn.hereAreYou = "Produkter";
-            valueReturn.header = "Produkter";
-            valueReturn.products = addCategoryHeaderModel(valueReturn.products);
+            productHpVModel.categoryHeaders = categoryHeaderRepository.GetAll();
+            productHpVModel.products = productRepository.GetAll();
+            productHpVModel.hereAreYou = "Produkter";
+            productHpVModel.header = "Produkter";
+            productHpVModel.products = addCategoryHeaderModel(productHpVModel.products);
 
-            return valueReturn;
+            return productHpVModel;
         }
 
         private List<ProductModel> addCategoryHeaderModel(List<ProductModel> list)
@@ -57,7 +59,6 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
             
             foreach(var item in list)
             {
-                
                 CategoryHeaderModel cate = categoryHeaderRepository.Find(item.CategoryHModelId);
                 item.CategoryHeaderModel = cate;
                 valueReturn.Add(item);
