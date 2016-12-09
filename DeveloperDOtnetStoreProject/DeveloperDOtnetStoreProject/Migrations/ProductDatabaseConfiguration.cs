@@ -234,19 +234,6 @@ namespace DeveloperDOtnetStoreProject.Migrations
                                         }
             });
 
-            // UserModel
-            context.UserModels.AddOrUpdate(u => u.Id, new UserModel[] {
-                                new UserModel
-                                {
-                                    FirstName = "Taeyeon",
-                                    LastName = "Kim",
-                                    Address = "Studesgaardsgade",
-                                    PostalCode = "2100",
-                                    City = "Copenhagen",
-                                    Email = "kimtaeyeon@sm.kr",
-                                    Password = "1024Krystal,"
-                                }
-            });
             context.SaveChanges();
             return context;
         }
