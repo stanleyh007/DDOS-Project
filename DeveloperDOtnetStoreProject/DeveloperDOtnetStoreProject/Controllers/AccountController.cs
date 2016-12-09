@@ -102,36 +102,6 @@ namespace DeveloperDOtnetStoreProject.Controllers
             }
         }
 
-        /*
-        [AllowAnonymous]
-        public ActionResult LoginCustomer(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult LoginCustomer(string username, string password)
-        {
-            if (IsValid(username, password))
-            {
-                var ident = new ClaimsIdentity(
-                    new[] {
-                        new Claim(ClaimTypes.NameIdentifier, username),
-                        new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
-
-                        new Claim(ClaimTypes.Name, username),
-                    },
-                    DefaultAuthenticationTypes.ApplicationCookie);
-                HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
-                return RedirectToAction("Index", "Body");       
-            }
-            ModelState.AddModelError("", "Invalid username or password");
-            return View();
-        }
-        */
-
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -232,47 +202,6 @@ namespace DeveloperDOtnetStoreProject.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        /*
-        //
-        // GET: /Account/RegisterCustomer
-        [AllowAnonymous]
-        public ActionResult RegisterCustomer()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/RegisterCustomer
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterCustomer(UserModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
-        */
-
 
         //
         // GET: /Account/ConfirmEmail
@@ -489,6 +418,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
 
         //
         // POST: /Account/LogOff
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -619,11 +549,12 @@ namespace DeveloperDOtnetStoreProject.Controllers
 
         // Post: user update
         [HttpPost]
-        public ActionResult Edit(ApplicationUser user)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                userRepo.InsertOrUpdate(user);
+                userRepo.Update(model);
                 return RedirectToAction("Index");
             }
             return View();

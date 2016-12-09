@@ -18,23 +18,23 @@
                             <img src="~/Images/logo_b2c.png"/>
                         </a>    
                     </div>
-                        <div class="row">
-                            <nav class="hidden-xs col-sm-12 text-right top-nav">
-                                <div class="nav navbar-fixed-top pull-right col-xs-7 col-sm-8 col-md-9">
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li>@Html.ActionLink("ØNSKELISTE", "Index", "Home")</li>
-                                        <li>@Html.ActionLink("KUNDESERVICE", "About", "Home")</li>
-                                        @Html.Partial("_LoginPartial")
-                                        @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
-                                        {
-                                            <li>@Html.ActionLink("OPRET BRUGER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerAdminLink" })</li>
-                                        }
-                                    </ul>     
-                                </div>
-                           </nav>
-                        </div>
                     <div class="row">
-                        <nav class="hidden-xs hidden-sm col-md-4 right-nav col-md-push-8">
+                        <nav class="hidden-xs col-sm-12 text-uppercase">
+                            <div class="nav navbar-static-top pull-right col-xs-7 col-sm-8 col-md-9">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>@Html.ActionLink("Ønskeliste", "Index", "Home")</li>
+                                    <li>@Html.ActionLink("Kundeservice", "About", "Home")</li>
+                                    @Html.Partial("_LoginPartial")
+                                    @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
+                                    {
+                                        <li>@Html.ActionLink("Opret bruge", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerAdminLink" })</li>
+                                    }
+                                </ul>
+                            </div>
+                        </nav>
+                    </div> 
+                    <div class="row">
+                        <nav class="hidden-xs hidden-sm col-md-4 right-nav col-md-push-8 text-uppercase">
                             <div class="nav navbar-right">
                                 <ul class="nav">
                                     <li>@Html.ActionLink("Indkøbsvogn", "Index", "Home")</li>
@@ -69,7 +69,7 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse text-uppercase">
                         @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
                         {
                             <ul class="nav navbar-nav">
@@ -83,7 +83,17 @@
                                 <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
                             </ul>
                         }
-
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("UGENS TILBUD", "Index", "Home")</li>
+                                <li>@Html.ActionLink("BYG-SELV PC", "Index", "Home")</li>
+                                <li>@Html.ActionLink("HARDWARE", "About", "Home")</li>
+                                <li>@Html.ActionLink("PC & TABLETS", "Index", "Home")</li>
+                                <li>@Html.ActionLink("TV & HIFI", "About", "Home")</li>
+                                <li>@Html.ActionLink("KONSOL & SPIL", "Index", "Home")</li>
+                            </ul>
+                        }
                         @if (ViewContext.HttpContext.User.IsInRole("Kunde"))
                         {
                             <ul class="nav navbar-nav">

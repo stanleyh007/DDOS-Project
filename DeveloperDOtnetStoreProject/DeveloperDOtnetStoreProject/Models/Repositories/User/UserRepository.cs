@@ -1,6 +1,8 @@
 ﻿using DeveloperDOtnetStoreProject.Interfaces;
 using DeveloperDOtnetStoreProject.Models.Product;
 using DeveloperDOtnetStoreProject.Models.User;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -13,7 +15,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
     public class UserRepository : IUserRepository
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-      
+
         //Find specific user
         public ApplicationUser Find(string id)
         {
@@ -28,37 +30,19 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
         }
 
         //Add or edit
-        public void InsertOrUpdate(ApplicationUser model)
+        public void Update(EditViewModel model)
         {
-                
-
-            try
+            var user = db.Users.FirstOrDefault(u => u.Id == model.Id);
+            if (user != null)
             {
-                if(model.Id == null)
-                {
-                    db.Users.Add(model);
-                }
-                else
-                {
-                    db.Entry(model).State = System.Data.Entity.EntityState.Modified;
-                }
-
-                db.SaveChanges();
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.PostalCode = model.PostalCode;
+                user.City = model.City;
+                user.Address = model.Address;
             }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw;
-            }
+            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
         }
 
         //Delete user

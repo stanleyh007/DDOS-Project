@@ -11,7 +11,7 @@ namespace DeveloperDOtnetStoreProject.Interfaces
     {
         ApplicationUser Find(string id);
         List<ApplicationUser> GetAll();
-        void InsertOrUpdate(ApplicationUser user);
+        void Update(EditViewModel user);
         bool Delete(string id);
     }
 }
