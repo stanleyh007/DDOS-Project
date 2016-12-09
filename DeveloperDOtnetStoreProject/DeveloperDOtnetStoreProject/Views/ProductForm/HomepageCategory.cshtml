@@ -1,0 +1,70 @@
+﻿@model DeveloperDOtnetStoreProject.Models.Views.ProductHomepageCategoryViewModel
+
+@{
+    ViewBag.Title = "HomepageCatergoryView";
+    ViewBag.Header = " Home";
+}
+
+<!-- <div class="container"> -->
+<div class="row">
+    <div class="col-sm-12">
+        <h5><b>Her er du:</b> @ViewBag.Header @Model.hereAreYou > @Model.header</h5>
+    </div>
+</div>
+    <div class="row site-content-table">
+        <!-- Set up Left (3 Grid) and Right (9 Grid) coloum -->
+        <div class="col-sm-3 pull-left site-content-table-footer"></div>
+        <div class="col-sm-9 pull-right site-content-table-footer">
+            <div class="row site-row-margin-top">
+                <div class="col-sm-12 center-block">
+                    <a href="/" target="_self" rel="nofollow">
+                        <!--<img src="~/Images/DK_black_friday.jpg" alt-style="max-width: 100%" /> -->
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Here A Start -->
+        <!-- Place holder for the Left div as a Menu -->
+        <div class="site-content-table-header col-sm-3">
+            
+            <nav class="navbar navbar-light bg-faded">
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <div class="productHeaderMenu">
+                        <span class="textHeader">@Model.header</span>
+                    </div>
+                    <ul class="hardwareMenu">
+                        @foreach (var category in Model.categories)
+                        {
+                            <li><a class="categgoryBodyMenu" href="/ProductForm/HomepageCategory/@category.CategoryHeaderModelId">@category.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="col-sm-9 pull-right productContent" id="content">
+            @foreach (var product in Model.products)
+            {
+                <div class="row hoverBorder itemHoverPadding">
+                    <a href="~/ProductForm/HomepageProductDetails/@(product.ProductModelId)" class="itemLongLink">
+                        <!-- Left Picture -->
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 fixedItemSize">
+                            <img class="img-responsive fixedItemSize" style="height: 100px" src="~/@(Model.BasicPathPicture)@(Model.header).jpg" />
+                        </div>
+                        <!-- Content -->
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-0 fixedItemSize">
+                            <h4>@Html.DisplayFor(e => product.NameHeader)</h4>
+                            <span style="font-size:12px;">@Html.DisplayFor(e => product.NameDescription)</span>
+                            <br />
+                            <span>@Html.DisplayFor(e => product.QuantityStorage)</span>
+                        </div>
+                        <!-- Price -->
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 fixedItemSize BottomTxtDiv">
+                            <span>@Html.DisplayFor(e => product.Price) ,- </span>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+<!-- </div> --> 

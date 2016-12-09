@@ -14,8 +14,8 @@ namespace DeveloperDOtnetStoreProject.Models.Product
         public string NameDescription { get; set; }
         public double Price { get; set; }
         public int QuantityStorage { get; set; }
-        public CategoryHeaderModel CategoryHeaderModelId { get; set; }
+        public int CategoryHModelId { get; set; }
+        public CategoryHeaderModel CategoryHeaderModel { get; set; }
         public ICollection<CostumerReviewModel> Reviews { get; set; }
-        public ICollection<CategoryGatherModel> TechnicalSpecifications { get; set; }
     }
 }

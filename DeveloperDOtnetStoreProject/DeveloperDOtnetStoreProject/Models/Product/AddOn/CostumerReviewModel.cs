@@ -11,6 +11,6 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn
         public int CostumerReviewModelId { get; set; }
         public ApplicationUser UserModelId { get; set; }
         public string Review { get; set; }
-        public RatingModel RatingModelId { get; set; }
+        public double StarsRating { get; set; }
     }
 }

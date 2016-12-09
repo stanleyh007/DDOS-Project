@@ -3,22 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DeveloperDOtnetStoreProject.Interfaces;
 
 namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
 {
-    public class CategoryHeaderRepository
+    public class CategoryHeaderRepository : IGenericProductRepository<CategoryHeaderModel>
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // Crud To the database
         // Find a single CategoryHeaderModel
         public CategoryHeaderModel Find(int? id)
         {
-            return db.CategoryHeader.Find(id);
+            return db.CategoryHeaderModels.Find(id);
         }
         // Get all categoryHeaderModels
         public List<CategoryHeaderModel> GetAll()
         {
-            return db.CategoryHeader.ToList();
+            return db.CategoryHeaderModels.ToList();
         }
 
         // Insert or update Category
@@ -26,7 +27,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
         {
             if(categoryHeader.CategoryHeaderModelId <= 0)
             {
-                db.CategoryHeader.Add(categoryHeader);
+                db.CategoryHeaderModels.Add(categoryHeader);
             }
             else
             {
@@ -45,7 +46,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
             else
             {
                 CategoryHeaderModel cHeader = Find(id);
-                db.CategoryHeader.Remove(cHeader);
+                db.CategoryHeaderModels.Remove(cHeader);
                 db.SaveChanges();
                 return true;
             }

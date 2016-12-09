@@ -1,0 +1,48 @@
+﻿@model DeveloperDOtnetStoreProject.Models.Product.ProductModel
+@{
+    ViewBag.Title = "HomepageProductDetails";
+    ViewBag.Error = "Need to be build and made";
+    ViewBag.Here = " Home > " + @Model.CategoryHeaderModel.Name + " > " + @Model.NameHeader;
+}
+
+<!-- Detail page from komplett.dk  -->
+<div class="container">
+    <div class="row"> <!-- Row 1 Starts -->
+        <div class="col-sm-12">
+            <h5><b>Her er du:</b> @ViewBag.Here</h5>
+        </div>
+    </div> <!-- Row 1 Ends -->
+    <div class="row"> <!-- Row 1 Starts -->
+        <!-- Here Heder Name and Description
+             And
+            -->
+        <div class="row-height">
+            <!-- Header Text Left -->
+            <div class="col-xs-12 col-sm-8 col-height testBorder">
+                <div class="inside inside-full-height">
+                    <div class="content">
+                        <h1>@Model.NameHeader</h1>
+                        <h2>@Model.NameDescription</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- Link icons Right-->
+            <div class="col-sm-4 col-height testBorder">
+                <div class="inside">
+                    <div class="content">
+                        <a href="https://www.facebook.com/Komplettdk/?fref=ts"><img class="img-responsive" src="~/Images/Icons/roundFacebookWhite.png" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Row 2 Ends -->
+    <div class="row"> <!-- Row 3 Starts -->
+        <div class="row-height">
+            <div class="col-sm-8 col-height testBorder">
+                <div class="inside inside-full-height testBorder">
+                    <img class="img-responsive" src="~/Images/Hardware/@(Model.CategoryHeaderModel.Name).jpg" />
+                </div>
+            </div>
+        </div>
+    </div><!-- Row 3 Ends -->
+</div>

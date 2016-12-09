@@ -10,6 +10,7 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn
     {
         public int CategoryHeaderModelId { get; set; }
         public string Name { get; set; } // name of the product
+        
         // This variable is not usable
         //public ICollection<CategoryModel> Categories { get; set; }
     }
