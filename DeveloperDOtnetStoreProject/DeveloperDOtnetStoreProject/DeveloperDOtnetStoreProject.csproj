@@ -389,7 +389,6 @@
       <DependentUpon>201612021455109_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Migrations\ConfigurationsTemp.cs" />
     <Compile Include="Migrations\ProductDatabaseConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
