@@ -403,7 +403,7 @@
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryItemRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
-    <Compile Include="Models\Repositories\UserRepository.cs" />
+    <Compile Include="Models\Repositories\User\UserRepository.cs" />
     <Compile Include="Models\Store\BasketModel.cs" />
     <Compile Include="Models\Store\BasketProductModel.cs" />
     <Compile Include="Models\User\AddOn\PurchaseModel.cs" />
