@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <!-- To Render somthing add this to the View @* @section buyOption { 
+                                                     <link href="@Url.Content("~[PATH TO CSS]") rel="stylesheet" type="text/css" />"
+                                                     }*@ -->
+    @if(IsSectionDefined("buyOption"))
+    {
+        @RenderSection("buyOption", required: false)
+    }
 </head>
 <body>
     <div class="navigation-header">
@@ -18,38 +25,30 @@
                             <img src="~/Images/logo_b2c.png"/>
                         </a>    
                     </div>
-                        <div class="row">
-                            <nav class="hidden-xs col-sm-12 text-right top-nav">
-                                <div class="nav navbar-fixed-top pull-right col-xs-7 col-sm-8 col-md-9">
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li>@Html.ActionLink("ØNSKELISTE", "Index", "Home")</li>
-                                        <li>@Html.ActionLink("KUNDESERVICE", "About", "Home")</li>
-                                        @Html.Partial("_LoginPartial")
-                                        @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
-                                        {
-                                            <li>@Html.ActionLink("OPRET BRUGER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                                        }
-                                    </ul>     
-                                </div>
-                           </nav>
+
+                    <nav class="hidden-xs col-sm-12 text-right top-nav">
+                        <div class="nav navbar-fixed-top pull-right col-xs-7 col-sm-8 col-md-9">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>@Html.ActionLink("ØNSKELISTE", "Index", "Home")</li>
+                                <li>@Html.ActionLink("KUNDESERVICE", "About", "Home")</li>
+                                @Html.Partial("_LoginPartial")
+                                @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
+                                {
+                                    <li>@Html.ActionLink("OPRET BRUGER", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                }
+                            </ul>     
                         </div>
-                    <div class="row">
-                        <nav class="hidden-xs hidden-sm col-md-4 right-nav col-md-push-8">
-                            <div class="nav navbar-right">
-                                <ul class="nav">
-                                    <li>@Html.ActionLink("Indkøbsvogn", "Index", "Home")</li>
-                                </ul>
-                            </div>
-                        </nav>
-                        <div class="hidden-xs hidden-sm col-sm-8 col-md-pull-4">
-                            <div class="search">
-                                <div class="col-lg-6 pull-right">
-                                    <div class="input-group" role="search" action="/" method="get">
-                                        <input type="text" class="form-control" placeholder="Søg i DDOS">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-secondary" type="submit">Go!</button>
-                                        </span>
-                                    </div>
+                    </nav>
+                    <!-- Partial View on the Shopping Cart -->
+                    @Html.Partial("_basketCartView")
+                    <div class="hidden-xs hidden-sm col-sm-8 col-md-pull-4">
+                        <div class="search">
+                            <div class="col-lg-6 pull-right">
+                                <div class="input-group" role="search" action="/" method="get">
+                                    <input type="text" class="form-control bottomPlaced" placeholder="Søg i DDOS">
+                                    <span class="input-group-btn bottomPlaced">
+                                        <button class="btn btn-secondary" type="submit">Go!</button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -103,5 +102,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    
 </body>
 </html>

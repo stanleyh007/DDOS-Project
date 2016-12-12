@@ -10,7 +10,7 @@ namespace DeveloperDOtnetStoreProject.Interfaces
     {
         T Find(int? id);
         List<T> GetAll();
-        void InsertOrUpdate(T entity);
+        bool InsertOrUpdate(T entity);
         bool Delete(int? id);
     }
 }

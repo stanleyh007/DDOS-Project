@@ -10,6 +10,9 @@ namespace DeveloperDOtnetStoreProject.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Models.Repositories.Product;
+    using Interfaces;
+    using Models.Product;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +64,8 @@ namespace DeveloperDOtnetStoreProject.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(typeof(IProductRepository)).To(typeof(ProductRepository));
+            
         }        
     }
 }

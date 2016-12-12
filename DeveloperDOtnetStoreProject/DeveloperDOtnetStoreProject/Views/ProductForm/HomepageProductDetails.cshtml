@@ -1,4 +1,10 @@
 ﻿@model DeveloperDOtnetStoreProject.Models.Product.ProductModel
+@section buyOption {
+    <link href="@Url.Content("~/Content/MyOwnLessFileToBuyOptions.css")" rel="stylesheet" type="text/css" />
+    @Scripts.Render("~/Scripts/jquery-3.1.1.js")
+    @Scripts.Render("~/Scripts/jquery-ui-1.12.1.js")
+}
+
 @{
     ViewBag.Title = "HomepageProductDetails";
     ViewBag.Error = "Need to be build and made";
@@ -18,7 +24,7 @@
             -->
         <div class="row-height">
             <!-- Header Text Left -->
-            <div class="col-xs-12 col-sm-8 col-height testBorder">
+            <div class="col-xs-12 col-sm-8 col-height">
                 <div class="inside inside-full-height">
                     <div class="content">
                         <h1>@Model.NameHeader</h1>
@@ -27,7 +33,7 @@
                 </div>
             </div>
             <!-- Link icons Right-->
-            <div class="col-sm-4 col-height testBorder">
+            <div class="col-sm-4 col-height">
                 <div class="inside">
                     <div class="content">
                         <a href="https://www.facebook.com/Komplettdk/?fref=ts"><img class="img-responsive" src="~/Images/Icons/roundFacebookWhite.png" /></a>
@@ -38,11 +44,68 @@
     </div><!-- Row 2 Ends -->
     <div class="row"> <!-- Row 3 Starts -->
         <div class="row-height">
-            <div class="col-sm-8 col-height testBorder">
-                <div class="inside inside-full-height testBorder">
+            <div class="col-sm-8 col-height">
+                <div class="inside inside-full-height">
                     <img class="img-responsive" src="~/Images/Hardware/@(Model.CategoryHeaderModel.Name).jpg" />
+                </div>
+            </div>
+            <div class="col-sm-4 col-height">
+                <div class="inside inside-full-height">
+                    <div class="inside buyOptionDiv">
+                        <!-- Buttons and a textBox to ++ -- -->
+                         @using (Html.BeginForm("addPToBasket", "Basket", FormMethod.Post))
+                         {
+                            <button type="button" class="btn btn-primary glyphicon glyphicon-plus" value="1" onclick="updateCounter(this.value)"></button>
+                            <!--<input type="text" class="numbersOfProductText" id="pices" value="1" />-->
+                            @Html.TextBox("pices", 1,  htmlAttributes: new { @class = "numbersOfProductText" } );
+                            <button type="button" class="btn btn-primary glyphicon glyphicon-minus" value="-1" onclick="updateCounter(this.value)"></button>
+                            @Html.HiddenFor(m => m.ProductModelId)
+                            <input type="submit" id="btnSave" value="Køb" />
+                         }
+                        <input type="submit" class="btn btn-success" value="Buy" onclick="sendData()"/>
+                    </div>
                 </div>
             </div>
         </div>
     </div><!-- Row 3 Ends -->
 </div>
+
+<!-- <a type="button"
+                                   class="btn btn-primary glyphicon glyphicon-shopping-cart"
+                                   value="køb"
+                                   id="buy"
+                                   href="/BasketController/addProductToBasket/@*(Model.ProductModelId)"
+                                   ></a>
+                            @Html.ActionLink("Tilføj til Kurven", "addProductToBasket", null, new { id = "buy" });*@
+    -->
+
+<!-- Script to button function -->
+<script>
+    /* Done */
+    function updateCounter(object) {
+        var valTxt = document.getElementById("pices").value;
+        
+        // To get value to be a number we use + sign to indicate it's a number
+        // http://stackoverflow.com/questions/8976627/how-to-add-two-strings-as-if-they-were-numbers
+        valTxt = +valTxt + +object;
+        document.getElementById("pices").value = valTxt;;
+    }
+
+    function getCount() {
+        return document.getElementById("pices").value;
+    }
+
+    function sendData() {
+        $.ajax({
+            url: "/Basket/addPToBasket/" + @(Model.ProductModelId) + "/" + document.getElementById("pices").value,
+            type: "post",
+            success: function (e) {
+                document.getElementById("basketCounter").innerHTML = +document.getElementById("basketCounter").innerHTML +
+                                                                 +document.getElementById("pices").value;
+            },
+            error: function (e) {
+                console.log("ajax kald virker " + e);
+            }
+        });
+    }
+</script>

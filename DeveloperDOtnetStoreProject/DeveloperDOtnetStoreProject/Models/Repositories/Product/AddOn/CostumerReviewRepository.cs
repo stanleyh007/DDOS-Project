@@ -36,7 +36,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
             return db.CostumerReview.ToList();
         }
 
-        public void InsertOrUpdate(CostumerReviewModel entity)
+        public bool InsertOrUpdate(CostumerReviewModel entity)
         {
             if(entity.CostumerReviewModelId <= 0)
             {
@@ -47,6 +47,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
                 db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             }
             db.SaveChanges();
+            return true;
         }
     }
 }

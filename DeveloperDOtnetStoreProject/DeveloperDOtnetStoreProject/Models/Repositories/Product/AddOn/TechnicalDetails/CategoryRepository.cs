@@ -36,7 +36,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.Technica
             return db.Category.ToList();
         }
 
-        public void InsertOrUpdate(CategoryModel entity)
+        public bool InsertOrUpdate(CategoryModel entity)
         {
             if (entity.CategoryModelId <= 0)
             {
@@ -47,6 +47,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.Technica
                 db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
             }
             db.SaveChanges();
+            return true;
         }
     }
 }

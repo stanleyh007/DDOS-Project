@@ -1,4 +1,5 @@
-﻿using DeveloperDOtnetStoreProject.Models;
+﻿using DeveloperDOtnetStoreProject.Interfaces;
+using DeveloperDOtnetStoreProject.Models;
 using DeveloperDOtnetStoreProject.Models.Product.AddOn;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn;
 using System;
@@ -12,7 +13,14 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product.AddOn
     [Authorize]
     public class CategoryHeaderController : Controller
     {
-        private CategoryHeaderRepository categoryRepo = new CategoryHeaderRepository();
+        private CategoryHeaderRepository categoryRepo;
+        private IGenericProductRepository<CategoryHeaderModel> _repository;
+
+        public CategoryHeaderController(IGenericProductRepository<CategoryHeaderModel> cate)
+        {
+            _repository = cate;
+            categoryRepo = new CategoryHeaderRepository();
+        }
 
         [AllowAnonymous]
         // GET: CategoryHeader

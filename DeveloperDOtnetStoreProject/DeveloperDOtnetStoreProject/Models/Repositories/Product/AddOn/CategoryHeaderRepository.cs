@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DeveloperDOtnetStoreProject.Interfaces;
+using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
 {
@@ -19,21 +21,35 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn
         // Get all categoryHeaderModels
         public List<CategoryHeaderModel> GetAll()
         {
-            return db.CategoryHeaderModels.ToList();
+            try { 
+                return db.CategoryHeaderModels.ToList();
+            } catch(Exception e)
+            {
+                return new List<CategoryHeaderModel>();
+            }
         }
 
         // Insert or update Category
-        public void InsertOrUpdate(CategoryHeaderModel categoryHeader)
+        public bool InsertOrUpdate(CategoryHeaderModel categoryHeader)
         {
-            if(categoryHeader.CategoryHeaderModelId <= 0)
+            try
             {
-                db.CategoryHeaderModels.Add(categoryHeader);
-            }
-            else
+                if (categoryHeader.CategoryHeaderModelId <= 0)
+                {
+                    db.CategoryHeaderModels.Add(categoryHeader);
+                }
+                else
+                {
+                    db.Entry(categoryHeader).State = System.Data.Entity.EntityState.Modified;
+                }
+            
+                db.SaveChanges();
+                return true;
+            } catch(SqlException eSQL)
             {
-                db.Entry(categoryHeader).State = System.Data.Entity.EntityState.Modified;
+                Debug.WriteLine("CategoryHeaderRepository file Execption\n" + eSQL);
+                return false;
             }
-            db.SaveChanges();
         }
 
         // Delete some categoryHeader

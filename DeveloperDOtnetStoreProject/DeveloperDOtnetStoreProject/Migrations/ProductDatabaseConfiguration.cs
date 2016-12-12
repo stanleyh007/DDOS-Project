@@ -247,7 +247,6 @@ namespace DeveloperDOtnetStoreProject.Migrations
                                     Password = "1024Krystal,"
                                 }
             });
-            context.SaveChanges();
             return context;
         }
     }

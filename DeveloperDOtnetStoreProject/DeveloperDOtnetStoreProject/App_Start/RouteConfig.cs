@@ -19,7 +19,11 @@ namespace DeveloperDOtnetStoreProject
                 defaults: new { controller = "Body", action = "Index", id = UrlParameter.Optional }
             );
             // I Idea is that you can make new Routes, but don't know how
-
+            routes.MapRoute(
+                "ItemDetailsWithSender",
+                "{controller}/{action}/{id}/{pieces}",
+                new { controller = "Basket", action = "addPToBasket", id = "", pieces = "" }
+            );
         }
     }
 }

@@ -26,7 +26,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         // IF ninject dosn't work here remove 
         //using DeveloperDOtnetStoreProject.Interfaces;
         private IProductRepository productRepository;
-        public ProductController(ProductRepository iprepo, CategoryHeaderRepository cHR)
+        public ProductController(IProductRepository iprepo, CategoryHeaderRepository cHR)
         {
             categoryHeaderRepository = cHR;
             productRepository = iprepo;

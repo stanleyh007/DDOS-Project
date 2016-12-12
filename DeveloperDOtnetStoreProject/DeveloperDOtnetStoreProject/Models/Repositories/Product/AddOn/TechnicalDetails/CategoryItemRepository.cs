@@ -26,7 +26,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.Technica
             return db.CategoryItem.ToList();
         }
 
-        public void InsertOrUpdate(CategoryItemModel categoryItem)
+        public bool InsertOrUpdate(CategoryItemModel categoryItem)
         {
             if(categoryItem.Id <= 0)
             {
@@ -37,6 +37,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.Technica
                 db.Entry(categoryItem).State = System.Data.Entity.EntityState.Modified;
             }
             db.SaveChanges();
+            return true;
         }
 
         public bool Delete(int? id)
