@@ -9,16 +9,20 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DeveloperDOtnetStoreProject.Models;
+using DeveloperDOtnetStoreProject.Models.User;
+using DeveloperDOtnetStoreProject.Models.Repositories;
+using System.Net;
 
 namespace DeveloperDOtnetStoreProject.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public ApplicationDbContext db = new ApplicationDbContext();
+        private UserRepository userRepo = new UserRepository();
 
         public AccountController()
         {
@@ -52,6 +56,11 @@ namespace DeveloperDOtnetStoreProject.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public bool IsValid(string username, string password)
+        {
+            return db.Users.Any(u => u.UserName == username && u.PasswordHash == password);
         }
 
         //
@@ -136,20 +145,20 @@ namespace DeveloperDOtnetStoreProject.Controllers
             }
         }
 
-        //
+        // Regiter Customer/Admin
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
             //Choose Role for user
-            
             var model = new RegisterViewModel();
             var roles = db.Roles.ToList();
             foreach (var r in roles)
             {
-                model.Rolelist.Add(new SelectListItem(){Text = r.Name, Value = r.Name});
+                model.Rolelist.Add(new SelectListItem() { Text = r.Name, Value = r.Name });
             }
             return View(model);
+            //return View();
         }
 
         //
@@ -161,7 +170,16 @@ namespace DeveloperDOtnetStoreProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Address = model.Address,
+                    PostalCode = model.PostalCode,
+                    City = model.City
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -176,7 +194,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Body");
                 }
                 AddErrors(result);
             }
@@ -400,6 +418,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
 
         //
         // POST: /Account/LogOff
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -462,7 +481,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Body");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
@@ -494,5 +513,77 @@ namespace DeveloperDOtnetStoreProject.Controllers
             }
         }
         #endregion
+
+        //User Model
+        [AllowAnonymous]
+        // Get: User
+        public ActionResult Index()
+        {
+            return View(userRepo.GetAll());
+        }
+
+        // Get: user details
+        public ActionResult Details(string id)
+        {
+            return View(userRepo.Find(id));
+        }
+
+        // Get: user update
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            ApplicationUser user = userRepo.Find(id);
+
+            if (user == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return View(user);
+        }
+
+        // Post: user update
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                userRepo.Update(model);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        // Get: user remove
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ApplicationUser user = userRepo.Find(id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(user);
+        }
+
+        // Post: user remove
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            userRepo.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

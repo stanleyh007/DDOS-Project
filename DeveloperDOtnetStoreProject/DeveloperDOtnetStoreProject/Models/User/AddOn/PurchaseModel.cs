@@ -13,7 +13,6 @@ namespace DeveloperDOtnetStoreProject.Models.User.AddOn
         public double price { get; set; }
         public int Quantity { get; set; }
         public ProductModel ProductModelId { get; set; }
-
         public ProductModel ProductNameHeader { get; set; }
 
     }

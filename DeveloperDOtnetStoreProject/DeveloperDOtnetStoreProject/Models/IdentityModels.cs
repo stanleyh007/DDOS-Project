@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using DeveloperDOtnetStoreProject.Models.User;
+using System.ComponentModel.DataAnnotations;
+using DeveloperDOtnetStoreProject.Models.User.AddOn;
+using System.Collections.Generic;
 
 namespace DeveloperDOtnetStoreProject.Models
 {
@@ -18,8 +21,22 @@ namespace DeveloperDOtnetStoreProject.Models
             return userIdentity;
         }
 
+        override
+        public string Id { get; set; }
         // Identity User
-        public UserModel UserModel { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string Address { get; set; }
+        [Required]
+        public string PostalCode { get; set; }
+        [Required]
+        public string City { get; set; }
+
+        public virtual ICollection<WishListModel> WishList { get; set; }
+        public ICollection<PurchaseModel> PurchaseHistory { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -50,7 +67,8 @@ namespace DeveloperDOtnetStoreProject.Models
 
 
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
-        // User
-        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.User.UserModel> UserModels { get; set; }
+
+        //WishList
+        public DbSet<DeveloperDOtnetStoreProject.Models.User.AddOn.WishListModel> WishList { get; set; }
     }
 }

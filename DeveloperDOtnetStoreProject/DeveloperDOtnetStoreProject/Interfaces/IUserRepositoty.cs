@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DeveloperDOtnetStoreProject.Models.User;
+using DeveloperDOtnetStoreProject.Models;
 
 namespace DeveloperDOtnetStoreProject.Interfaces
 {
     interface IUserRepository
     {
-        UserModel Find(int? id);
-        List<UserModel> GetAll();
-        void InsertOrUpdate(UserModel user);
-        bool Delete(int? id);
+        ApplicationUser Find(string id);
+        List<ApplicationUser> GetAll();
+        void Update(EditViewModel user);
+        bool Delete(string id);
     }
 }

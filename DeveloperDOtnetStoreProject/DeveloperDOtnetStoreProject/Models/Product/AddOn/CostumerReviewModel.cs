@@ -1,4 +1,4 @@
-﻿using DeveloperDOtnetStoreProject.Models.User;
+﻿using DeveloperDOtnetStoreProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace DeveloperDOtnetStoreProject.Models.Product.AddOn
     public class CostumerReviewModel
     {
         public int CostumerReviewModelId { get; set; }
-        public UserModel UserModelId { get; set; }
+        public ApplicationUser UserModelId { get; set; }
         public string Review { get; set; }
         public double StarsRating { get; set; }
     }

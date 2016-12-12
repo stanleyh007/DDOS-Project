@@ -1,15 +1,15 @@
-﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.User.UserModel>
+﻿@model IEnumerable<DeveloperDOtnetStoreProject.Models.ApplicationUser>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Students</h2>
+<h2>Users</h2>
 
 @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
 {
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Register")
     </p>
 }
 
