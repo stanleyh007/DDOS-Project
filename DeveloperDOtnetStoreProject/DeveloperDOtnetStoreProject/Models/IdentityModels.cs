@@ -64,7 +64,9 @@ namespace DeveloperDOtnetStoreProject.Models
         //    -> CategoryModel
         public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryModel> Category { get; set; }
 
-
+        // Basket Models
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Store.BasketModel> baskets { get; set; }
+        public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Store.BasketProductModel> basketProducts { get; set; }
 
         //public System.Data.Entity.DbSet<DeveloperDOtnetStoreProject.Models.Product.AddOn.TechnicalDetails.CategoryItemModel> CategoryItemModels { get; set; }
 

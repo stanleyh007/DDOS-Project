@@ -5,6 +5,7 @@ using DeveloperDOtnetStoreProject.Models.Product.AddOn;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn;
 using DeveloperDOtnetStoreProject.Models.Repositories.Product.AddOn.TechnicalDetails;
+using DeveloperDOtnetStoreProject.Models.Repositories.Store;
 using DeveloperDOtnetStoreProject.Models.Store;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,13 @@ namespace DeveloperDOtnetStoreProject.Controllers.Store
 {
     public class BasketController : Controller
     {
+        private IBasketRepository<BasketModel> basketRepo; 
         private IProductRepository productRepository;
         private BasketModel basket;
 
-        public BasketController(ProductRepository proRepo, BasketModel bask)
+        public BasketController(ProductRepository proRepo, BasketModel bask, IBasketRepository<BasketModel> bRepo)
         {
+            basketRepo = bRepo;
             basket = bask;
             productRepository = proRepo;
             basket.orderTotal = 0;
@@ -29,7 +32,13 @@ namespace DeveloperDOtnetStoreProject.Controllers.Store
         // GET: Basket
         public ActionResult Index()
         {
-            return View();
+            return View(basketRepo);
+        }
+
+        [HttpGet]
+        public ActionResult Buy()
+        {
+            return View(basket);
         }
 
         [HttpPost]

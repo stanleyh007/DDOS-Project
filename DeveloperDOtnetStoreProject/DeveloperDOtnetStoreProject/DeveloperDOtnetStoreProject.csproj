@@ -402,6 +402,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBasketRepository.cs" />
     <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Interfaces\IGenericProductRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
@@ -424,6 +425,8 @@
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryItemRepository.cs" />
     <Compile Include="Models\Repositories\Product\AddOn\TechnicalDetails\CategoryRepository.cs" />
     <Compile Include="Models\Repositories\Product\ProductRepository.cs" />
+    <Compile Include="Models\Repositories\Store\BasketProductRepository.cs" />
+    <Compile Include="Models\Repositories\Store\BasketRepository.cs" />
     <Compile Include="Models\Repositories\User\UserRepository.cs" />
     <Compile Include="Models\Store\BasketModel.cs" />
     <Compile Include="Models\Store\BasketProductModel.cs" />

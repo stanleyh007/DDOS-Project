@@ -74,7 +74,8 @@ namespace DeveloperDOtnetStoreProject.Controllers.Views
                 foreach(var item in list)
                 {
                     // If true then put product in objectReturn.products
-                    if(categoryId == item.CategoryHModelId && (categoryHeaderRepository.Find(item.CategoryHModelId)) != null)
+                    if(categoryId == item.CategoryHModelId && 
+                       (categoryHeaderRepository.Find(item.CategoryHModelId)) != null)
                     {
                         int a = item.CategoryHModelId;
                         objectReturn.products.Add(item);
