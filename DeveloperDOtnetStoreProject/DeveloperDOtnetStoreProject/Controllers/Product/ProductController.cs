@@ -33,18 +33,44 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
             productHpVModel = new ProductHomepageViewModel();
         }
 
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         // GET: Product
         public ActionResult Index()
         {
             return View(getProductViewModel());
+        }*/
+
+        [AllowAnonymous]
+        // GET: Product
+        public ActionResult Index(string searchProduct = "")
+        {   
+            return View(getProductViewModel(searchProduct));
+            // Linq 101
+            /*
+            var productModels = productRepository.GetAll();
+
+            return View(getProductViewModel());*/
             //return View(productRepository.GetAll());
         }
 
-        private ProductHomepageViewModel getProductViewModel()
+        private void products(List<ProductModel> list)
+        {
+            productHpVModel.products = list;
+        }
+            
+
+        private ProductHomepageViewModel getProductViewModel(string searchTxt)
         {
             productHpVModel.categoryHeaders = categoryHeaderRepository.GetAll();
-            productHpVModel.products = productRepository.GetAll();
+            if(searchTxt == "") { 
+                products(productRepository.GetAll());
+            }
+            else
+            {
+                // Linq 101
+                // 
+                products(productRepository.SearchProducts(searchTxt).ToList());
+            }
             productHpVModel.hereAreYou = "Produkter";
             productHpVModel.header = "Produkter";
             productHpVModel.products = addCategoryHeaderModel(productHpVModel.products);
@@ -56,7 +82,11 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
         {
             
             List<ProductModel> valueReturn = new List<ProductModel>();
-            
+            if(list == null)
+            {
+                return new List<ProductModel>();
+            }
+
             foreach(var item in list)
             {
                 CategoryHeaderModel cate = categoryHeaderRepository.Find(item.CategoryHModelId);
@@ -170,7 +200,7 @@ namespace DeveloperDOtnetStoreProject.Controllers.Product
                 return new HttpNotFoundResult();
             }
             productRepository.Delete(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");   
         }
 
         public ProductModel Find(int? id)

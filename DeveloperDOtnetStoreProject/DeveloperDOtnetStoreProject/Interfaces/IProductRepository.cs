@@ -13,5 +13,6 @@ namespace DeveloperDOtnetStoreProject.Interfaces
         List<ProductModel> GetAll();
         void InsertOrUpdate(ProductModel product);
         bool Delete(int? id);
+        List<ProductModel> SearchProducts(string search);
     }
 }

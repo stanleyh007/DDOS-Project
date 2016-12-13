@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using DeveloperDOtnetStoreProject.Models.Product;
 using DeveloperDOtnetStoreProject.Interfaces;
+using System.Diagnostics;
 
 namespace DeveloperDOtnetStoreProject.Models.Repositories.Product
 {
@@ -14,27 +15,32 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product
         // Find specific Product
         public ProductModel Find(int? id)
         {
-            return db.Products.Find(id);
+            return db.Products.Find(id);   
         }
         // GetAll()
         public List<ProductModel> GetAll()
         {
-            
             return db.Products.ToList();
         }
         
         // ADD or Update
         public void InsertOrUpdate(ProductModel product)
         {
-            if(product.ProductModelId <= 0)
+            if(product == null)
+            {
+                
+            }
+            else if(product.ProductModelId <= 0)
             {
                 db.Products.Add(product);
+                db.SaveChanges();
             }
             else
             {
                 db.Entry(product).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
             }
-            db.SaveChanges();
+            
         }
 
         // Delete Product
@@ -43,13 +49,44 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories.Product
             if(id == null)
             {
                 return false;
-            } else
+            }
+            else
             {
                 ProductModel product = Find(id);
                 db.Products.Remove(product);
                 db.SaveChanges();
                 return true;
             }
+        }
+
+        public List<ProductModel> SearchProducts(string productSearch)
+        {
+            IEnumerable<ProductModel> products = GetAll();
+
+
+            if (!String.IsNullOrEmpty(productSearch))
+            {
+                // Linq 101 HC's way
+                //products = products.Where();
+
+                // Linq 101 HC's way
+                products = products.Where(p =>
+                                          p.NameHeader.ToLower().Contains(productSearch.ToLower()) ||
+                                          p.NameDescription.ToLower().Contains(productSearch.ToLower()) ||
+                                          p.Price.ToString().Contains(productSearch) ||
+                                          p.ProductModelId.ToString().Contains(productSearch)
+                );
+                /*
+                // Linq Kirschbergs way
+                var pSearched = from p in products
+                                where   p.NameHeader.ToLower().Contains(productSearch.ToLower()) ||
+                                        p.NameDescription.ToLower().Contains(productSearch.ToLower())
+
+                                select p;
+                products = pSearched.ToList();
+                */
+            }
+            return products.ToList();
         }
         /*
         //Christian Kirschberg Try the following: Go to Menu: View ->

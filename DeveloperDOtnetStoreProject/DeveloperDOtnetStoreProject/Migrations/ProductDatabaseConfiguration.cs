@@ -18,37 +18,37 @@ namespace DeveloperDOtnetStoreProject.Migrations
             context.CategoryHeaderModels.AddOrUpdate(s => s.Name, new CategoryHeaderModel[] {
                                                new CategoryHeaderModel
                                                {
-                                                   CategoryHeaderModelId = 1,
+                                                   //CategoryHeaderModelId = 1,
                                                    Name = "Grafikkort"
                                                },
                                                new CategoryHeaderModel
                                                {
-                                                   CategoryHeaderModelId = 2,
+                                                   //CategoryHeaderModelId = 2,
                                                    Name = "Harddisk"
                                                },
                                                new CategoryHeaderModel
                                                {
-                                                   CategoryHeaderModelId = 3,
+                                                   //CategoryHeaderModelId = 3,
                                                    Name = "Bundkort"
                                                },
                                                new CategoryHeaderModel
                                                {
-                                                   CategoryHeaderModelId = 4,
+                                                   //CategoryHeaderModelId = 4,
                                                    Name = "Ram"
                                                },
                                                new CategoryHeaderModel
                                                {
-                                                    CategoryHeaderModelId = 5,
+                                                    //CategoryHeaderModelId = 5,
                                                     Name = "Lydkort"
                                                },
                                                new CategoryHeaderModel
                                                {
-                                                    CategoryHeaderModelId = 6,
+                                                    //CategoryHeaderModelId = 6,
                                                     Name = "Processor-CPU"
                                                },
                                                new CategoryHeaderModel
                                                {
-                                                    CategoryHeaderModelId = 7,
+                                                    //CategoryHeaderModelId = 7,
                                                     Name = "Cooling"
                                                }
             });
@@ -233,7 +233,26 @@ namespace DeveloperDOtnetStoreProject.Migrations
                                             CategoryHModelId = 16
                                         }
             });
+
+            context.Products.AddOrUpdate(getCategoryHeaderModel(context));
+
             return context;
+        }
+
+        private ProductModel[] getCategoryHeaderModel(ApplicationDbContext context)
+        {
+            ProductModel[] list = new ProductModel[context.Products.Count()];
+            int index = 0;
+            foreach (ProductModel cId in context.Products)
+            {
+                foreach (CategoryHeaderModel chm in context.CategoryHeaderModels) {
+                    if(cId.CategoryHModelId == chm.CategoryHeaderModelId) {
+                        list[index].CategoryHeaderModel = chm;
+                    }
+                }
+                index++;
+            }
+            return list;
         }
     }
 }
