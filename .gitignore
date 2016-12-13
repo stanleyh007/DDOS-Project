@@ -250,3 +250,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/DeveloperDOtnetStoreProject/DeveloperDOtnetStoreProject/Migrations/201612130240058_InitialCreate.cs
+/DeveloperDOtnetStoreProject/DeveloperDOtnetStoreProject/Migrations/201612130240058_InitialCreate.Designer.cs
+/DeveloperDOtnetStoreProject/DeveloperDOtnetStoreProject/Migrations/201612130240058_InitialCreate.resx
