@@ -386,9 +386,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-	<Compile Include="Interfaces\IUserRepositoty.cs" />
+    <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Interfaces\IGenericProductRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
+    <Compile Include="Migrations\201612130240058_InitialCreate.cs" />
+    <Compile Include="Migrations\201612130240058_InitialCreate.Designer.cs">
+      <DependentUpon>201612130240058_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\ProductDatabaseConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -422,6 +426,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DDOS-Troels-Stylesheet.css" />
+    <Content Include="Content\Site.css">
+      <DependentUpon>Site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\DK_black_friday.jpg" />
     <Content Include="Images\Hardware\Bundkort.jpg" />
@@ -442,7 +452,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -454,6 +463,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\Site.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -521,7 +535,7 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\ProductForm\Index.cshtml" />
     <Content Include="Views\CategoryItem\Create.cshtml" />
-    <Content Include="Views\Shared\_CreateUpdate.cshtml" />
+    <Content Include="Views\Shared\_Create.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Shared\_DetailsOrDelete.cshtml" />
@@ -546,6 +560,11 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612130240058_InitialCreate.resx">
+      <DependentUpon>201612130240058_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
