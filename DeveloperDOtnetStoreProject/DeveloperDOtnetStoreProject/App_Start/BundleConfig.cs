@@ -6,6 +6,25 @@ namespace DeveloperDOtnetStoreProject
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
+        /*
+         * //General
+         * Bundling and Minification minimize static script or css files loading time therby minimize page loading time.
+           MVC framework provides ScriptBundle, StyleBundle and DynamicFolderBundle classes.
+           Create script or css bundles in the BundleConfig class included in App_Start folder.
+           Use wildcard {version} to render available version files at runtime.
+
+           //StyleBundle
+           StyleBundle does minification of CSS files.
+           Use Styles.Render("bundle name") method to include style bundles in a razor view.
+
+           //ScriptBundle
+           ScriptBundle does minification of JavaScript files.
+           Use Scripts.Render("bundle name") method to include script bundle in a razor view.
+         */
+
+        //Bundling is a new feature in ASP.NET 4.5 that makes it easy to combine or bundle multiple files into a single file. 
+        //You can create CSS, JavaScript and other bundles. Fewer files means fewer HTTP requests and that can improve first page load  performance.
+
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

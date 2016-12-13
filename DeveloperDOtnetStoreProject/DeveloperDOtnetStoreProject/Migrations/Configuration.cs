@@ -46,26 +46,25 @@ namespace DeveloperDOtnetStoreProject.Migrations
                 //Adding data to Role
                 var role = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-                role.Create(new IdentityRole("Administrator"));
-                role.Create(new IdentityRole("Kunde"));
+            role.Create(new IdentityRole("Administrator"));
+            role.Create(new IdentityRole("Kunde"));
+      
+            // admin
+            var client2 = new ApplicationUser { UserName = "a@b.c", FirstName = "Troels", LastName = "Jensen", Address = "addressssssssss", PostalCode = "2650", City = "Hvidovre"};
+            var result1 = manager.Create(client2, "P_assw0rd1");
 
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-                // admin
-                var client2 = new ApplicationUser { UserName = "a@b.c" };
-                var result1 = userManager.Create(client2, "P_assw0rd1");
+            // Kunde
+            var costumerClient = new ApplicationUser { UserName = "kunde@kunde.dk", FirstName = "Xinkai", LastName = "Huang", Address = "addressssssssssss", PostalCode = "2100", City = "København Ø" };
+            var result2 = manager.Create(costumerClient, "P_assw0rd1");
 
-                // Kunde
-                var costumerClient = new ApplicationUser { UserName = "kunde@kunde.dk" };
-                var result2 = userManager.Create(client2, "P_assw0rd1");
-
-                if (result1.Succeeded == false)
-                {
-                    client2 = userManager.FindByName("a@b.c");
-                }
+            if (result1.Succeeded == false)
+            {
+                client2 = manager.FindByName("a@b.c");
+            }
 
                 if (result2.Succeeded == false)
                 {
-                    costumerClient = userManager.FindByName("kunde@kunde.dk");
+                    costumerClient = manager.FindByName("kunde@kunde.dk");
                 }
 
                 ProductDatabaseConfiguration context1 = new ProductDatabaseConfiguration();
