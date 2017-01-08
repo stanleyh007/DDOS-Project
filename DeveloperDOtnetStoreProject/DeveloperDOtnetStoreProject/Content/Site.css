@@ -141,6 +141,61 @@ textarea {
     vertical-align: bottom;
   }
 }
+/*Some customized bootstrap */
+.jumbotron {
+  padding: 30px;
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #eeeeee;
+}
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+}
+.jumbotron p {
+  line-height: 1.4;
+}
+.container .jumbotron {
+  border-radius: 6px;
+}
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .container .jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .jumbotron h1 {
+    font-size: 63px;
+  }
+}
+#createSave {
+  margin-top: 20px;
+}
+.field-validation-error {
+  color: red;
+}
+.btn-primary {
+  background: #0060ac;
+}
+.input-validation-error {
+  border: 1px solid red;
+}
+.form-control {
+  margin-top: 10px;
+}
+.control-label {
+  padding-top: 15px;
+}
+.dl-horizontal {
+    padding-top: 15px;
+    min-height: 10px;
+}
 .input-group-btn {
   float: right;
 }
