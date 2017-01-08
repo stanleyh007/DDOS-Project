@@ -29,7 +29,7 @@ namespace DeveloperDOtnetStoreProject.Models.Repositories
             return users;
         }
 
-        //Add or edit
+        //edit user
         public void Update(EditViewModel model)
         {
             var user = db.Users.FirstOrDefault(u => u.Id == model.Id);

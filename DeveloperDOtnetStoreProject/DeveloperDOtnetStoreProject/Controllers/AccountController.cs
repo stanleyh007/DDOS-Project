@@ -158,7 +158,6 @@ namespace DeveloperDOtnetStoreProject.Controllers
                 model.Rolelist.Add(new SelectListItem() { Text = r.Name, Value = r.Name });
             }
             return View(model);
-            //return View();
         }
 
         //
@@ -170,6 +169,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Save userinformation
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -424,6 +424,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //Change redirect page after logoff to homeview
             return RedirectToAction("Index", "Body");
         }
 
@@ -475,6 +476,7 @@ namespace DeveloperDOtnetStoreProject.Controllers
             }
         }
 
+        //Set default redirect page to homeview
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -516,11 +518,22 @@ namespace DeveloperDOtnetStoreProject.Controllers
 
         //User Model
         [AllowAnonymous]
-        // Get: User
-        public ActionResult Index()
+        // Get: Users
+        public ActionResult Index(string searchString)
         {
+            //Search users(FirstName only)
+            var users = from u in db.Users
+                        select u;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(s => s.FirstName.Contains(searchString));
+                return View(users);
+            }
+
             return View(userRepo.GetAll());
         }
+
 
         // Get: user details
         public ActionResult Details(string id)

@@ -81,7 +81,7 @@ namespace DeveloperDOtnetStoreProject.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        //UserModel
+        //Save userinformation
         [Required]
         [Display(Name = "First name")]
         public string FirstName { get; set; }
@@ -98,7 +98,7 @@ namespace DeveloperDOtnetStoreProject.Models
         [Display(Name = "City")]
         public string City { get; set; }
 
-        //Give Role a name
+        //Give user a role
         public string Name { get; set; }
 
         public RegisterViewModel()
@@ -109,13 +109,19 @@ namespace DeveloperDOtnetStoreProject.Models
 
     }
 
+    //ViewModel for updating user (only update specify information)
     public class EditViewModel
     {
         public string Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public string PostalCode { get; set; }
+        [Required]
         public string City { get; set; }
 
     }

@@ -243,9 +243,10 @@ namespace DeveloperDOtnetStoreProject.Migrations
         {
             ProductModel[] list = new ProductModel[context.Products.Count()];
             int index = 0;
+            var categoryheadermodels = context.CategoryHeaderModels.ToList();
             foreach (ProductModel cId in context.Products)
             {
-                foreach (CategoryHeaderModel chm in context.CategoryHeaderModels) {
+                foreach (CategoryHeaderModel chm in categoryheadermodels) {
                     if(cId.CategoryHModelId == chm.CategoryHeaderModelId) {
                         list[index].CategoryHeaderModel = chm;
                     }
