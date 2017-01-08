@@ -406,10 +406,6 @@
     <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Interfaces\IGenericProductRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
-    <Compile Include="Migrations\201701072244138_Initial.cs" />
-    <Compile Include="Migrations\201701072244138_Initial.Designer.cs">
-      <DependentUpon>201701072244138_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\ProductDatabaseConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -634,11 +630,6 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701072244138_Initial.resx">
-      <DependentUpon>201701072244138_Initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
