@@ -406,9 +406,9 @@
     <Compile Include="Interfaces\IUserRepositoty.cs" />
     <Compile Include="Interfaces\IGenericProductRepository.cs" />
     <Compile Include="Interfaces\IProductRepository.cs" />
-    <Compile Include="Migrations\201612130240058_InitialCreate.cs" />
-    <Compile Include="Migrations\201612130240058_InitialCreate.Designer.cs">
-      <DependentUpon>201612130240058_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201701072244138_Initial.cs" />
+    <Compile Include="Migrations\201701072244138_Initial.Designer.cs">
+      <DependentUpon>201701072244138_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\ProductDatabaseConfiguration.cs" />
@@ -450,6 +450,9 @@
     </Content>
     <Content Include="Content\MyOwnLessFileToBuyOptions.min.css">
       <DependentUpon>MyOwnLessFileToBuyOptions.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css">
+      <DependentUpon>site.less</DependentUpon>
     </Content>
     <Content Include="Content\site.min.css">
       <DependentUpon>Site.css</DependentUpon>
@@ -633,8 +636,8 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612130240058_InitialCreate.resx">
-      <DependentUpon>201612130240058_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701072244138_Initial.resx">
+      <DependentUpon>201701072244138_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

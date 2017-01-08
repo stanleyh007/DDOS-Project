@@ -22,7 +22,7 @@ namespace DeveloperDOtnetStoreProject
             routes.MapRoute(
                 "ItemDetailsWithSender",
                 "{controller}/{action}/{id}/{pieces}",
-                new { controller = "Basket", action = "addPToBasket", id = "", pieces = "" }
+                new { controller = "Basket", action = "addPToBasket", id = "", pieces = "" } 
             );
         }
     }

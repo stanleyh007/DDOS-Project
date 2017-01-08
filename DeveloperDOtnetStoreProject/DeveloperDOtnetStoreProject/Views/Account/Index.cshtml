@@ -8,11 +8,15 @@
 
 @if (ViewContext.HttpContext.User.IsInRole("Administrator"))
 {
-    <p>
+    <div>
         @Html.ActionLink("Create New", "Register")
-    </p>
+        @using (Html.BeginForm()) {
+            <br />
+        <p> First Name: @Html.TextBox("SearchString") <br />
+            <input type="submit" value="Search" /></p>
+        }
+    </div>
 }
-
 
 <table class="table">
     <tr>

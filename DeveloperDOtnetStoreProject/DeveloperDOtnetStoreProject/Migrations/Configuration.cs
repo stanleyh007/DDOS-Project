@@ -9,6 +9,7 @@ namespace DeveloperDOtnetStoreProject.Migrations
     using System.Data.Entity.Validation;
     using System.Diagnostics;
     using System.Linq;
+    using System.Web.Security;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DeveloperDOtnetStoreProject.Models.ApplicationDbContext>
     {
@@ -50,12 +51,14 @@ namespace DeveloperDOtnetStoreProject.Migrations
             role.Create(new IdentityRole("Kunde"));
       
             // admin
-            var client2 = new ApplicationUser { UserName = "a@b.c", FirstName = "Troels", LastName = "Jensen", Address = "addressssssssss", PostalCode = "2650", City = "Hvidovre"};
+            var client2 = new ApplicationUser { UserName = "a@b.c", FirstName = "Troels", LastName = "Jensen", Address = "addressssssssss", PostalCode = "2650", City = "Hvidovre" };
             var result1 = manager.Create(client2, "P_assw0rd1");
+            var adminrole = manager.AddToRole(client2.Id, "Administrator");
 
             // Kunde
             var costumerClient = new ApplicationUser { UserName = "kunde@kunde.dk", FirstName = "Xinkai", LastName = "Huang", Address = "addressssssssssss", PostalCode = "2100", City = "København Ø" };
             var result2 = manager.Create(costumerClient, "P_assw0rd1");
+            var costumerrole = manager.AddToRole(costumerClient.Id, "Kunde");
 
             if (result1.Succeeded == false)
             {
