@@ -10,13 +10,8 @@ namespace DeveloperDOtnetStoreProject.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Microsoft.AspNet.Identity;
-    using Models;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.Owin.Security;
-    using Models.Repositories.Product;
     using Interfaces;
-    using Models.Product;
+    using Models.Repositories.Product;
 
     public static class NinjectWebCommon 
     {
@@ -68,15 +63,7 @@ namespace DeveloperDOtnetStoreProject.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(typeof(IProductRepository)).To(typeof(ProductRepository));
-            kernel.Bind<IUserStore<ApplicationUser>>().To<UserStore<ApplicationUser>>();
-            kernel.Bind<UserManager<ApplicationUser>>().ToSelf();
-
-            kernel.Bind<IAuthenticationManager>().ToMethod(context =>
-            {
-                var contextBase = new HttpContextWrapper(HttpContext.Current);
-                return contextBase.GetOwinContext().Authentication;
-            });
+            kernel.Bind<IProductRepository>().To<ProductRepository>();
         }        
     }
 }
